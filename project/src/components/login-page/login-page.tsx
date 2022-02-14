@@ -1,8 +1,8 @@
-import {ReactComponent} from '*.svg';
+import React from 'react';
 
 export default function LoginPage(): JSX.Element {
   return (
-    <ReactComponent>
+    <React.Fragment>
       <div style={{display: 'none'}}>
         <svg xmlns='http://www.w3.org/2000/svg'>
           <symbol id='icon-arrow-select' viewBox='0 0 7 4'>
@@ -56,6 +56,6 @@ export default function LoginPage(): JSX.Element {
           </div>
         </main>
       </div>
-    </ReactComponent>
+    </React.Fragment>
   );
 }

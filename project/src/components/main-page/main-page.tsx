@@ -1,5 +1,5 @@
+import React from 'react';
 import Card from '../card/card';
-import {ReactComponent} from "*.svg";
 
 type MainPageProps = {
   placesCount: number;
@@ -7,7 +7,7 @@ type MainPageProps = {
 
 export default function MainPage({placesCount}: MainPageProps): JSX.Element {
   return (
-    <ReactComponent>
+    <React.Fragment>
       <div style={{display: 'none'}}>
         <svg xmlns='http://www.w3.org/2000/svg'>
           <symbol id='icon-arrow-select' viewBox='0 0 7 4'>
@@ -123,6 +123,6 @@ export default function MainPage({placesCount}: MainPageProps): JSX.Element {
           </div>
         </main>
       </div>
-    </ReactComponent>
+    </React.Fragment>
   );
 }
