@@ -1,4 +1,4 @@
-function Card(): JSX.Element {
+export default function Card(): JSX.Element {
   return (
     <article className='cities__place-card place-card'>
       <div className='place-card__mark'>
@@ -36,5 +36,3 @@ function Card(): JSX.Element {
     </article>
   );
 }
-
-export default Card;
