@@ -1,11 +1,11 @@
 import React from 'react';
 import Card from '../../card/card';
 
-type MainPageProps = {
+type PropsType = {
   placesCount: number;
 }
 
-export default function MainPage({placesCount}: MainPageProps): JSX.Element {
+export default function MainPage({placesCount}: PropsType): JSX.Element {
   return (
     <React.Fragment>
       <div style={{display: 'none'}}>
