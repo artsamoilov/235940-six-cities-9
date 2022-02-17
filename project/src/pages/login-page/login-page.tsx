@@ -39,5 +39,5 @@ export default function LoginPage(): JSX.Element {
         </div>
       </main>
     </div>
-  )
+  );
 }

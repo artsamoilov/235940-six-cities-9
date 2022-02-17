@@ -301,5 +301,5 @@ export default function PropertyPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }

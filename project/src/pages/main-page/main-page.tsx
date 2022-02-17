@@ -1,4 +1,4 @@
-import Card from '../components/card/card';
+import Card from '../../components/card/card';
 
 type PropsType = {
   placesCount: number;
@@ -107,5 +107,5 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
         </div>
       </main>
     </div>
-  )
+  );
 }
