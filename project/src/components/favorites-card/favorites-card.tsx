@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export default function FavoritesCard() {
+export default function FavoritesCard(): JSX.Element {
   return (
     <article className='favorites__card place-card'>
       <div className='place-card__mark'>

@@ -2,7 +2,7 @@ import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Card from '../../components/card/card';
 
-export default function PropertyPage() {
+export default function PropertyPage(): JSX.Element {
   return (
     <div className='page'>
       <header className='header'>

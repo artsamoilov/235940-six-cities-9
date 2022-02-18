@@ -3,7 +3,7 @@ import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import FavoritesCard from '../../components/favorites-card/favorites-card';
 
-export default function FavoritesPage() {
+export default function FavoritesPage(): JSX.Element {
   return (
     <div className='page'>
       <header className='header'>

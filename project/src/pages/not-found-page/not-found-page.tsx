@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 
-export default function NotFoundPage() {
+export default function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
