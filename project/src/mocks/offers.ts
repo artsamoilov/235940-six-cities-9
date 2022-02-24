@@ -159,4 +159,4 @@ export const Offers = [
     title: 'Nice, cozy, warm big bed apartment',
     type: 'apartment'
   },
-]
+];
