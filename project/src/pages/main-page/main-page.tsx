@@ -1,7 +1,7 @@
 import Card from '../../components/card/card';
-import Logo from '../../components/logo/logo';
-import Navigation from '../../components/navigation/navigation';
 import Tabs from '../../components/tabs/tabs';
+import Header from '../../components/header/header';
+import Navigation from '../../components/navigation/navigation';
 
 type PropsType = {
   placesCount: number;
@@ -10,14 +10,9 @@ type PropsType = {
 export default function MainPage({placesCount}: PropsType): JSX.Element {
   return (
     <div className='page page--gray page--main'>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <Logo />
-            <Navigation />
-          </div>
-        </div>
-      </header>
+      <Header>
+        <Navigation />
+      </Header>
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
@@ -30,7 +25,7 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
               <form className='places__sorting' action='#' method='get'>
                 <span className='places__sorting-caption'>Sort by</span>
                 <span className='places__sorting-type' tabIndex={0}>
-                  Popular
+                  &nbsp;Popular
                   <svg className='places__sorting-arrow' width='7' height='4'>
                     <use xlinkHref='#icon-arrow-select' />
                   </svg>
@@ -56,6 +51,7 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
           </div>
         </div>
       </main>
+
     </div>
   );
 }

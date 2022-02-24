@@ -1,18 +1,13 @@
-import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import Card from '../../components/card/card';
+import Header from '../../components/header/header';
 
 export default function PropertyPage(): JSX.Element {
   return (
     <div className='page'>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <Logo />
-            <Navigation />
-          </div>
-        </div>
-      </header>
+      <Header>
+        <Navigation />
+      </Header>
 
       <main className='page__main page__main--property'>
         <section className='property'>
@@ -191,6 +186,7 @@ export default function PropertyPage(): JSX.Element {
           </section>
         </div>
       </main>
+
     </div>
   );
 }

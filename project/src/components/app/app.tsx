@@ -26,7 +26,7 @@ export default function App({placesCount}: PropsType): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               <FavoritesPage />
             </PrivateRoute>
           }

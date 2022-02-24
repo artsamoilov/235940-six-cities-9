@@ -1,19 +1,15 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../components/logo/logo';
 import Navigation from '../../components/navigation/navigation';
 import FavoritesCard from '../../components/favorites-card/favorites-card';
+import Footer from '../../components/footer/footer';
+import Header from '../../components/header/header';
 
 export default function FavoritesPage(): JSX.Element {
   return (
     <div className='page'>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <Logo />
-            <Navigation />
-          </div>
-        </div>
-      </header>
+      <Header>
+        <Navigation />
+      </Header>
 
       <main className='page__main page__main--favorites'>
         <div className='page__favorites-container container'>
@@ -50,11 +46,8 @@ export default function FavoritesPage(): JSX.Element {
           </section>
         </div>
       </main>
-      <footer className='footer container'>
-        <Link to='/' className='footer__logo-link'>
-          <img className='footer__logo' src='img/logo.svg' alt='6 cities logo' width='64' height='33' />
-        </Link>
-      </footer>
+
+      <Footer />
     </div>
   );
 }
