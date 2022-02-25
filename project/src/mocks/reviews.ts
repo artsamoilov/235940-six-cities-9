@@ -8,8 +8,8 @@ export const Reviews = [
       avatarUrl: 'img/avatar-max.jpg',
       id: 8,
       isPro: false,
-      name: 'Oliver'
-    }
+      name: 'Oliver',
+    },
   },
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
@@ -20,8 +20,8 @@ export const Reviews = [
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 1,
       isPro: true,
-      name: 'Jane'
-    }
+      name: 'Jane',
+    },
   },
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
@@ -32,8 +32,8 @@ export const Reviews = [
       avatarUrl: 'img/avatar-max.jpg',
       id: 6,
       isPro: true,
-      name: 'Lesley'
-    }
+      name: 'Lesley',
+    },
   },
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
@@ -44,7 +44,7 @@ export const Reviews = [
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 5,
       isPro: false,
-      name: 'Bethany'
-    }
+      name: 'Bethany',
+    },
   },
 ];

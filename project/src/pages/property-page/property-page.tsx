@@ -1,8 +1,14 @@
+import {useLocation} from 'react-router-dom';
+import {OfferType} from '../../const';
 import Navigation from '../../components/navigation/navigation';
-import Card from '../../components/card/card';
 import Header from '../../components/header/header';
+import CardsList from '../../components/cards-list/cards-list';
 
-export default function PropertyPage(): JSX.Element {
+type PropsType = {
+  offers: OfferType[],
+}
+
+export default function PropertyPage({offers}: PropsType): JSX.Element {
   return (
     <div className='page'>
       <Header>
@@ -179,9 +185,7 @@ export default function PropertyPage(): JSX.Element {
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
-              <Card />
-              <Card />
-              <Card />
+              <CardsList offers={offers.filter((offer) => offer.id !== +useLocation().pathname.split('/')[2]).slice(0, 3)} />
             </div>
           </section>
         </div>
