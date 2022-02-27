@@ -1,4 +1,6 @@
-export const Reviews = [
+import {ReviewType} from '../types/review-type';
+
+export const Reviews: ReviewType[] = [
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: String(new Date()),
@@ -32,7 +34,7 @@ export const Reviews = [
       avatarUrl: 'img/avatar-max.jpg',
       id: 6,
       isPro: true,
-      name: 'Lesley',
+      name: 'Marcus',
     },
   },
   {
@@ -44,7 +46,7 @@ export const Reviews = [
       avatarUrl: 'img/avatar-angelina.jpg',
       id: 5,
       isPro: false,
-      name: 'Bethany',
+      name: 'Susen',
     },
   },
 ];

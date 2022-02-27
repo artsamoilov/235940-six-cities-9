@@ -1,11 +1,10 @@
 import {Link} from 'react-router-dom';
+import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 export default function FavoritesCard(): JSX.Element {
   return (
     <article className='favorites__card place-card'>
-      <div className='place-card__mark'>
-        <span>Premium</span>
-      </div>
+      <CardPremiumMark />
       <div className='favorites__image-wrapper place-card__image-wrapper'>
         <Link to='/offer/1'>
           <img className='place-card__image' src='img/apartment-small-03.jpg' width='150' height='110' alt='Place image' />

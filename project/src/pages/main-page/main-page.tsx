@@ -1,4 +1,4 @@
-import {OfferType} from '../../const';
+import {OfferType} from '../../types/offer-type';
 import Tabs from '../../components/tabs/tabs';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';

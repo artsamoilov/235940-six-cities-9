@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {OfferType} from '../../const';
+import {OfferType} from '../../types/offer-type';
 import MainPage from '../../pages/main-page/main-page';
 import PropertyPage from '../../pages/property-page/property-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';

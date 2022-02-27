@@ -1,4 +1,6 @@
-export const Offers = [
+import {OfferType} from '../types/offer-type';
+
+export const Offers: OfferType[] = [
   {
     bedrooms: 1,
     city: {
@@ -9,11 +11,18 @@ export const Offers = [
       },
       name: 'Amsterdam',
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
     goods: [
       'Wi-Fi',
+      'Washing machine',
+      'Towels',
       'Heating',
       'Coffee machine',
+      'Baby seat',
+      'Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge',
     ],
     host: {
       avatarUrl: 'img/avatar-max.jpg',
@@ -24,6 +33,13 @@ export const Offers = [
     id: 0,
     images: [
       'img/room.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
     ],
     isFavorite: true,
     isPremium: false,
@@ -47,9 +63,9 @@ export const Offers = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Cologne',
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam.',
     goods: [
       'Heating',
     ],
@@ -62,6 +78,13 @@ export const Offers = [
     id: 1,
     images: [
       'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/room.jpg',
     ],
     isFavorite: false,
     isPremium: true,
@@ -87,7 +110,7 @@ export const Offers = [
       },
       name: 'Amsterdam',
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a river by the unique lightness of Amsterdam. The building is green and from 18th century. An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     goods: [
       'Heating',
       'Kitchen',
@@ -104,6 +127,12 @@ export const Offers = [
     id: 2,
     images: [
       'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/apartment-03.jpg',
+      'img/room.jpg',
     ],
     isFavorite: false,
     isPremium: false,
@@ -127,9 +156,9 @@ export const Offers = [
         longitude: 4.895168,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Hamburg',
     },
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    description: 'A quiet cozy and picturesque that hides behind a river.',
     goods: [
       'Heating',
       'Kitchen',
@@ -144,6 +173,10 @@ export const Offers = [
     id: 3,
     images: [
       'img/apartment-03.jpg',
+      'img/studio-01.jpg',
+      'img/apartment-01.jpg',
+      'img/apartment-02.jpg',
+      'img/room.jpg',
     ],
     isFavorite: false,
     isPremium: true,
@@ -155,7 +188,7 @@ export const Offers = [
     maxAdults: 4,
     previewImage: 'img/apartment-03.jpg',
     price: 180,
-    rating: 4.9,
+    rating: 3.7,
     title: 'Nice, cozy, warm big bed apartment',
     type: 'apartment',
   },
