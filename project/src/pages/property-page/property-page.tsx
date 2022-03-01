@@ -10,7 +10,7 @@ import CardsList from '../../components/cards-list/cards-list';
 import PropertyPremiumMark from '../../components/property-premium-mark/property-premium-mark';
 import PropertyGallery from '../../components/property-gallery/property-gallery';
 import PropertyReview from '../../components/property-review/property-review';
-import StarsRating from '../../components/stars-rating/stars-rating';
+import CommentForm from '../../components/comment-form/comment-form';
 
 type PropsType = {
   offers: OfferType[],
@@ -87,18 +87,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
                 <ul className='reviews__list'>
                   {Reviews.map((review: ReviewType, index: number) => <PropertyReview {...Reviews[index]} key={index}/>)}
                 </ul>
-                <form className='reviews__form form' action='#' method='post'>
-                  <label className='reviews__label form__label' htmlFor='review'>Your review</label>
-                  <StarsRating />
-                  <textarea className='reviews__textarea form__textarea' id='review' name='review' placeholder='Tell how was your stay, what you like and what can be improved' />
-                  <div className='reviews__button-wrapper'>
-                    <p className='reviews__help'>
-                      To submit review please make sure to set <span className='reviews__star'>rating</span> and
-                      describe your stay with at least <b className='reviews__text-amount'>50 characters</b>.
-                    </p>
-                    <button className='reviews__submit form__submit button' type='submit' disabled>Submit</button>
-                  </div>
-                </form>
+                <CommentForm />
               </section>
             </div>
           </div>

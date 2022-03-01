@@ -5,11 +5,12 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
+  setActiveCardId: any,
 }
 
-export default function Card({offer}: PropsType): JSX.Element {
+export default function Card({offer, setActiveCardId}: PropsType): JSX.Element {
   return (
-    <article className='cities__place-card place-card'>
+    <article className='cities__place-card place-card' onMouseOver={() => setActiveCardId(offer.id)}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${offer.id}`} replace={true}>
