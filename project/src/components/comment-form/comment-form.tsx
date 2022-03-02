@@ -18,7 +18,7 @@ export default function CommentForm(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
-  const isButtonEnabled = (): boolean => !(formData.rating && formData.review.length >= 50);
+  const isButtonDisabled = (): boolean => formData.rating === '' && formData.review.length < 50;
 
   return (
     <form className='reviews__form form' action='#' method='post'>
@@ -65,7 +65,7 @@ export default function CommentForm(): JSX.Element {
           To submit review please make sure to set <span className='reviews__star'>rating</span> and
           describe your stay with at least <b className='reviews__text-amount'>50 characters</b>.
         </p>
-        <button className='reviews__submit form__submit button' type='submit' disabled={isButtonEnabled()}>Submit</button>
+        <button className='reviews__submit form__submit button' type='submit' disabled={isButtonDisabled()}>Submit</button>
       </div>
     </form>
   );
