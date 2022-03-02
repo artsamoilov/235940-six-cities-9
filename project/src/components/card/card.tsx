@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {Offers} from '../../mocks/offers';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../utils';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
@@ -13,8 +14,8 @@ export default function Card({offer, setActiveCardId}: PropsType): JSX.Element {
     <article className='cities__place-card place-card' onMouseOver={() => setActiveCardId(offer.id)}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to={`/offer/${offer.id}`} replace={true}>
-          <img className='place-card__image' src={offer.previewImage} width='260' height='200' alt={`${offer.title} image`} />
+        <Link to={`/offer/${offer.id}`}>
+          <img className='place-card__image' src={offer.previewImage} width='260' height='200' alt={`${offer.title}`} />
         </Link>
       </div>
       <div className='place-card__info'>

@@ -14,7 +14,7 @@ export default function PropertyGallery({images}: PropsType): JSX.Element {
     <div className='property__gallery-container container'>
       <div className='property__gallery'>
 
-        {previewImages.map((previewSource: string, index: number): JSX.Element => <PropertyImage key={index} source={previewSource} />)}
+        {previewImages.map((previewSource: string): JSX.Element => <PropertyImage source={previewSource} />)}
 
       </div>
     </div>

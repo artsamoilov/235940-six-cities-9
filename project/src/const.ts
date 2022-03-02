@@ -11,5 +11,5 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const MAX_RATING: number = 5;
-export const MAX_PERCENT: number = 100;
+export const MAX_RATING = 5;
+export const MAX_PERCENT = 100;
