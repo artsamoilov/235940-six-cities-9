@@ -17,9 +17,10 @@ type PropsType = {
 }
 
 const PATH_ID_INDEX = 2;
+const RADIX = 10;
 
 export default function PropertyPage({offers}: PropsType): JSX.Element {
-  const currentOfferId = parseInt(useLocation().pathname.split('/')[PATH_ID_INDEX]);
+  const currentOfferId = parseInt(useLocation().pathname.split('/')[PATH_ID_INDEX], RADIX);
   const currentOffer = offers.find((offer: OfferType) => offer.id === currentOfferId);
 
   if (!currentOffer) {
@@ -66,7 +67,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
               <div className='property__inside'>
                 <h2 className='property__inside-title'>What&apos;s inside</h2>
                 <ul className='property__inside-list'>
-                  {currentOffer.goods.map((good: string) => <li className='property__inside-item'>{good}</li>)}
+                  {currentOffer.goods.map((good: string) => <li key={'goods'} className='property__inside-item'>{good}</li>)}
                 </ul>
               </div>
               <div className='property__host'>
@@ -85,7 +86,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
               <section className='property__reviews reviews'>
                 <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{Reviews.length}</span></h2>
                 <ul className='reviews__list'>
-                  {Reviews.map((review: ReviewType, index: number) => <PropertyReview {...Reviews[index]}/>)}
+                  {Reviews.map((review: ReviewType, index: number) => <PropertyReview key={'review'} {...Reviews[index]}/>)}
                 </ul>
                 <CommentForm />
               </section>

@@ -1,12 +1,12 @@
+import {Dispatch, SetStateAction} from 'react';
 import {Link} from 'react-router-dom';
-import {Offers} from '../../mocks/offers';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../utils';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  setActiveCardId: any,
+  setActiveCardId: Dispatch<SetStateAction<number>>,
 }
 
 export default function Card({offer, setActiveCardId}: PropsType): JSX.Element {

@@ -7,7 +7,7 @@ export default function FavoritesCard(): JSX.Element {
       <CardPremiumMark />
       <div className='favorites__image-wrapper place-card__image-wrapper'>
         <Link to='/offer/1'>
-          <img className='place-card__image' src='img/apartment-small-03.jpg' width='150' height='110' alt='Place image' />
+          <img className='place-card__image' src='img/apartment-small-03.jpg' width='150' height='110' alt='Apartment' />
         </Link>
       </div>
       <div className='favorites__card-info place-card__info'>
