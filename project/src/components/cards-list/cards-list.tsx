@@ -11,7 +11,7 @@ export default function CardsList({offers}: PropsType): JSX.Element {
 
   return (
     <>
-      {offers.map((offer: OfferType, index: number): JSX.Element => <Card key={`card${index}`} offer={offer} setActiveCardId={setActiveCardId}/>)}
+      {offers.map((offer: OfferType): JSX.Element => <Card key={offer.id} offer={offer} setActiveCardId={setActiveCardId}/>)}
     </>
   );
 }
