@@ -18,7 +18,7 @@ export default function CommentForm(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
-  const isButtonDisabled = (): boolean => formData.rating === '' && formData.review.length < 50;
+  const isButtonDisabled = (): boolean => formData.rating === '' || formData.review.length < 50;
 
   return (
     <form className='reviews__form form' action='#' method='post'>

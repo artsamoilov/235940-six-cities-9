@@ -1,4 +1,4 @@
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {ReviewType} from '../../types/review-type';
 import {AppRoute} from '../../const';
@@ -16,12 +16,9 @@ type PropsType = {
   offers: OfferType[],
 }
 
-const PATH_ID_INDEX = 2;
-const RADIX = 10;
-
 export default function PropertyPage({offers}: PropsType): JSX.Element {
-  const currentOfferId = parseInt(useLocation().pathname.split('/')[PATH_ID_INDEX], RADIX);
-  const currentOffer = offers.find((offer: OfferType) => offer.id === currentOfferId);
+  const currentOfferId = useParams().id;
+  const currentOffer = offers.find((offer: OfferType) => offer.id.toString() === currentOfferId);
 
   if (!currentOffer) {
     return <Navigate to={AppRoute.SignIn}/>;
@@ -67,7 +64,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
               <div className='property__inside'>
                 <h2 className='property__inside-title'>What&apos;s inside</h2>
                 <ul className='property__inside-list'>
-                  {currentOffer.goods.map((good: string) => <li key={'goods'} className='property__inside-item'>{good}</li>)}
+                  {currentOffer.goods.map((good: string, index: number) => <li key={`goods${index}`} className='property__inside-item'>{good}</li>)}
                 </ul>
               </div>
               <div className='property__host'>
@@ -86,7 +83,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
               <section className='property__reviews reviews'>
                 <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{Reviews.length}</span></h2>
                 <ul className='reviews__list'>
-                  {Reviews.map((review: ReviewType, index: number) => <PropertyReview key={'review'} {...Reviews[index]}/>)}
+                  {Reviews.map((review: ReviewType, index: number) => <PropertyReview key={`review${index}`} {...Reviews[index]}/>)}
                 </ul>
                 <CommentForm />
               </section>
@@ -98,7 +95,7 @@ export default function PropertyPage({offers}: PropsType): JSX.Element {
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
-              <CardsList offers={offers.filter((offer) => offer.id !== currentOfferId)}/>
+              <CardsList offers={offers.filter((offer) => offer.id.toString() !== currentOfferId)}/>
             </div>
           </section>
         </div>

@@ -7,11 +7,11 @@ type PropsType = {
 }
 
 export default function CardsList({offers}: PropsType): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState(0);
+  const [, setActiveCardId] = useState(0);
 
   return (
     <>
-      {offers.map((offer: OfferType): JSX.Element => <Card key={activeCardId} offer={offer} setActiveCardId={setActiveCardId}/>)}
+      {offers.map((offer: OfferType, index: number): JSX.Element => <Card key={`card${index}`} offer={offer} setActiveCardId={setActiveCardId}/>)}
     </>
   );
 }
