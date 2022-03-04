@@ -1,16 +1,10 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../components/logo/logo';
+import Header from '../../components/header/header';
 
 export default function LoginPage(): JSX.Element {
   return (
     <div className='page page--gray page--login'>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <Logo />
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className='page__main page__main--login'>
         <div className='page__login-container container'>
@@ -37,6 +31,7 @@ export default function LoginPage(): JSX.Element {
           </section>
         </div>
       </main>
+
     </div>
   );
 }

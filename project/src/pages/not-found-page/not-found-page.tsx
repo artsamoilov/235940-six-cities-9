@@ -1,16 +1,10 @@
 import {Link} from 'react-router-dom';
-import Logo from '../../components/logo/logo';
+import Header from '../../components/header/header';
 
 export default function NotFoundPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <Logo />
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="page__main page__main--index page__main--index-empty">
         <h1 className="visually-hidden">Error 404</h1>
@@ -26,6 +20,7 @@ export default function NotFoundPage(): JSX.Element {
           </div>
         </div>
       </main>
+
     </div>
   );
 }

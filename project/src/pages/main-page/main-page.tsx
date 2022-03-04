@@ -1,23 +1,19 @@
-import Card from '../../components/card/card';
-import Logo from '../../components/logo/logo';
-import Navigation from '../../components/navigation/navigation';
+import {OfferType} from '../../types/offer-type';
 import Tabs from '../../components/tabs/tabs';
+import Header from '../../components/header/header';
+import Navigation from '../../components/navigation/navigation';
+import CardsList from '../../components/cards-list/cards-list';
 
 type PropsType = {
-  placesCount: number;
+  offers: OfferType[],
 }
 
-export default function MainPage({placesCount}: PropsType): JSX.Element {
+export default function MainPage({offers}: PropsType): JSX.Element {
   return (
     <div className='page page--gray page--main'>
-      <header className='header'>
-        <div className='container'>
-          <div className='header__wrapper'>
-            <Logo />
-            <Navigation />
-          </div>
-        </div>
-      </header>
+      <Header>
+        <Navigation />
+      </Header>
 
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
@@ -26,11 +22,11 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
           <div className='cities__places-container container'>
             <section className='cities__places places'>
               <h2 className='visually-hidden'>Places</h2>
-              <b className='places__found'>{placesCount} places to stay in Amsterdam</b>
+              <b className='places__found'>{offers.length} places to stay in Amsterdam</b>
               <form className='places__sorting' action='#' method='get'>
                 <span className='places__sorting-caption'>Sort by</span>
                 <span className='places__sorting-type' tabIndex={0}>
-                  Popular
+                  &nbsp;Popular
                   <svg className='places__sorting-arrow' width='7' height='4'>
                     <use xlinkHref='#icon-arrow-select' />
                   </svg>
@@ -43,11 +39,7 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
                 </ul>
               </form>
               <div className='cities__places-list places__list tabs__content'>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <CardsList offers={offers} />
               </div>
             </section>
             <div className='cities__right-section'>
@@ -56,6 +48,7 @@ export default function MainPage({placesCount}: PropsType): JSX.Element {
           </div>
         </div>
       </main>
+
     </div>
   );
 }
