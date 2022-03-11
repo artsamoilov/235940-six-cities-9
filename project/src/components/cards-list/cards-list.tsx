@@ -15,12 +15,7 @@ export default function CardsList({offers, onCardHover}: PropsType): JSX.Element
   return (
     <>
       {offers.map((offer: OfferType): JSX.Element =>
-        <Card
-          key={offer.id}
-          offer={offer}
-          setActiveCardId={setActiveCardId}
-          cardHoverHandler={cardHoverHandler}
-        />)}
+        <Card key={offer.id} offer={offer} setActiveCardId={setActiveCardId} cardHoverHandler={cardHoverHandler}/>)}
     </>
   );
 }

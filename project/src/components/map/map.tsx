@@ -30,14 +30,14 @@ export default function Map({offers, city, selectedOffer}: PropsType): JSX.Eleme
     if (map) {
       offers.forEach(({id, location}) => {
         const marker = new Marker({
-            lat: location.latitude,
-            lng: location.longitude,
-          });
+          lat: location.latitude,
+          lng: location.longitude,
+        });
 
         marker.setIcon(selectedOffer && selectedOffer.id === id ? activeIcon : defaultIcon).addTo(map);
       });
     }
   }, [map, offers, selectedOffer]);
 
-  return <div style={{height: '100%'}} ref={mapRef} />
+  return <div style={{height: '100%'}} ref={mapRef} />;
 }

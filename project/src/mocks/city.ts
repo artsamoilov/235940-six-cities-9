@@ -7,4 +7,4 @@ export const AMSTERDAM: CityType = {
     zoom: 12,
   },
   name: 'Amsterdam',
-}
+};

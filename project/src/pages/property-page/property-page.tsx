@@ -23,15 +23,15 @@ export default function PropertyPage({offers, city}: PropsType): JSX.Element {
   const currentOfferId = useParams().id;
   const currentOffer = offers.find((offer: OfferType) => offer.id.toString() === currentOfferId);
 
+  const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
+
   if (!currentOffer) {
     return <Navigate to={AppRoute.SignIn}/>;
   }
 
-  const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
-
   const onCardHover = (id: number) => {
-    const currentOffer = offers.find((offer) => offer.id === id);
-    setSelectedOffer(currentOffer);
+    const hoveredOffer = offers.find((offer) => offer.id === id);
+    setSelectedOffer(hoveredOffer);
   };
 
   const neighbourOffers = offers.filter((offer) => offer.id.toString() !== currentOfferId);
