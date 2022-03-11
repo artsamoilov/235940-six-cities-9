@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Артур Самойлов](https://up.htmlacademy.ru/react/9/user/235940).
-* Наставник: [Виктор Кан](https://htmlacademy.ru/profile/viktorkan).
+* Наставник: [Семён Якушев](https://htmlacademy.ru/profile/id1118791).
 
 ---
 

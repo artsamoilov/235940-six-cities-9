@@ -1,15 +1,15 @@
-type Location = {
+export type LocationType = {
   latitude: number,
   longitude: number,
   zoom: number,
 }
 
-type City = {
-  location: Location,
+export type CityType = {
+  location: LocationType,
   name: string,
 }
 
-type Host = {
+export type HostType = {
   avatarUrl: string,
   id: number,
   isPro: boolean,
@@ -18,15 +18,15 @@ type Host = {
 
 export type OfferType = {
   bedrooms: number,
-  city: City,
+  city: CityType,
   description: string,
   goods: string[],
-  host: Host,
+  host: HostType,
   id: number,
   images: string[],
   isFavorite: boolean,
   isPremium: boolean,
-  location: Location,
+  location: LocationType,
   maxAdults: number,
   previewImage: string,
   price: number,
