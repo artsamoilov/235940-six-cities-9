@@ -35,7 +35,7 @@ export default function App({offers, city}: PropsType): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<PropertyPage offers={offers} />}
+          element={<PropertyPage offers={offers} city={city}/>}
         />
         <Route
           path='*'

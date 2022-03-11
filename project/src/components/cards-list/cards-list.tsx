@@ -1,4 +1,4 @@
-import {useState, MouseEvent} from 'react';
+import {useState} from 'react';
 import {OfferType} from '../../types/offer-type';
 import Card from '../card/card';
 
