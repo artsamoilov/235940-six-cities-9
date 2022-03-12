@@ -14,7 +14,7 @@ export default function Card({offer, setActiveCardId, cardHoverHandler}: PropsTy
   const mouseOverHandler = (id: number): void => {
     setActiveCardId(id);
     cardHoverHandler(id);
-  }
+  };
 
   return (
     <article className='cities__place-card place-card' onMouseOver={() => mouseOverHandler(offer.id)} onMouseLeave={() => mouseOverHandler(-1)}>
