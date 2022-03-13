@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
-import {OfferType} from '../../types/offer-type';
+import {OfferType, CityType} from '../../types/offer-type';
 import MainPage from '../../pages/main-page/main-page';
 import PropertyPage from '../../pages/property-page/property-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
@@ -10,15 +10,16 @@ import PrivateRoute from '../private-route/private-route';
 
 type PropsType = {
   offers: OfferType[],
+  city: CityType,
 }
 
-export default function App({offers}: PropsType): JSX.Element {
+export default function App({offers, city}: PropsType): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage offers={offers}/>}
+          element={<MainPage offers={offers} city={city}/>}
         />
         <Route
           path={AppRoute.SignIn}
@@ -34,7 +35,7 @@ export default function App({offers}: PropsType): JSX.Element {
         />
         <Route
           path={AppRoute.Room}
-          element={<PropertyPage offers={offers} />}
+          element={<PropertyPage offers={offers} city={city}/>}
         />
         <Route
           path='*'

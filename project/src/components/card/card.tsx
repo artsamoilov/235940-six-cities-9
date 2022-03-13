@@ -7,11 +7,17 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 type PropsType = {
   offer: OfferType,
   setActiveCardId: Dispatch<SetStateAction<number>>,
+  cardHoverHandler: (id: number) => void,
 }
 
-export default function Card({offer, setActiveCardId}: PropsType): JSX.Element {
+export default function Card({offer, setActiveCardId, cardHoverHandler}: PropsType): JSX.Element {
+  const mouseOverHandler = (id: number): void => {
+    setActiveCardId(id);
+    cardHoverHandler(id);
+  };
+
   return (
-    <article className='cities__place-card place-card' onMouseOver={() => setActiveCardId(offer.id)}>
+    <article className='cities__place-card place-card' onMouseOver={() => mouseOverHandler(offer.id)} onMouseLeave={() => mouseOverHandler(-1)}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${offer.id}`}>

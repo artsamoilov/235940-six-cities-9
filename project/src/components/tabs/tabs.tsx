@@ -6,7 +6,7 @@ export default function Tabs(): JSX.Element {
       <section className='locations container'>
         <ul className='locations__list tabs__list'>
           <li className='locations__item'>
-            <Link to='#' className='locations__item-link tabs__item tabs__item--active'>
+            <Link to='#' className='locations__item-link tabs__item'>
               <span>Paris</span>
             </Link>
           </li>
@@ -21,7 +21,7 @@ export default function Tabs(): JSX.Element {
             </Link>
           </li>
           <li className='locations__item'>
-            <Link to='' className='locations__item-link tabs__item'>
+            <Link to='' className='locations__item-link tabs__item tabs__item--active'>
               <span>Amsterdam</span>
             </Link>
           </li>
