@@ -1,18 +1,16 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {useState} from 'react';
 import {CityType, OfferType} from '../../types/offer-type';
-import {ReviewType} from '../../types/review-type';
 import {AppRoute} from '../../const';
 import {getRatingPercent} from '../../utils';
-import {Reviews} from '../../mocks/reviews';
 import Navigation from '../../components/navigation/navigation';
 import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
 import PropertyPremiumMark from '../../components/property-premium-mark/property-premium-mark';
 import PropertyGallery from '../../components/property-gallery/property-gallery';
-import PropertyReview from '../../components/property-review/property-review';
 import CommentForm from '../../components/comment-form/comment-form';
 import Map from '../../components/map/map';
+import ReviewsList from '../../components/reviews-list/reviews-list';
 
 type PropsType = {
   offers: OfferType[],
@@ -93,10 +91,7 @@ export default function PropertyPage({offers, city}: PropsType): JSX.Element {
                 </div>
               </div>
               <section className='property__reviews reviews'>
-                <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{Reviews.length}</span></h2>
-                <ul className='reviews__list'>
-                  {Reviews.map((review: ReviewType, index: number) => <PropertyReview key={review.id} {...Reviews[index]}/>)}
-                </ul>
+                <ReviewsList />
                 <CommentForm />
               </section>
             </div>
