@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import {ReviewType} from '../../types/review-type';
 import {getRatingPercent} from '../../utils';
 
-export default function Review({comment, date, id, rating, user}: ReviewType): JSX.Element {
+export default function Review({comment, date, rating, user}: ReviewType): JSX.Element {
   return (
     <li className='reviews__item'>
       <div className='reviews__user user'>
