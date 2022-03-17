@@ -11,5 +11,14 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum City {
+  Amsterdam = 'Amsterdam',
+  Brussels = 'Brussels',
+  Cologne = 'Cologne',
+  Dusseldorf = 'Dusseldorf',
+  Hamburg = 'Hamburg',
+  Paris = 'Paris',
+}
+
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;
