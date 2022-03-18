@@ -1,12 +1,12 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
+import {OfferType} from '../../types/offer-type';
+import {useAppSelector} from '../../hooks';
 import 'leaflet/dist/leaflet.css';
-import {OfferType, CityType} from '../../types/offer-type';
 import useMap from '../../hooks/use-map/use-map';
+import {AMSTERDAM, Cities} from '../../mocks/cities';
 
 type PropsType = {
-  offers: OfferType[],
-  city: CityType,
   selectedOffer: OfferType | undefined,
 }
 
@@ -22,9 +22,17 @@ const activeIcon = new Icon({
   iconAnchor: [13, 39],
 });
 
-export default function Map({offers, city, selectedOffer}: PropsType): JSX.Element {
+export default function Map({selectedOffer}: PropsType): JSX.Element {
+  const {cityName, offers} = useAppSelector((state) => state);
+
+  const getCityLocation = (cityName: string) => {
+    const city = Cities.find(({name}) => name === cityName);
+    return city ? city.location : AMSTERDAM.location;
+  }
+
+  const location = getCityLocation(cityName);
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city.location);
+  const map = useMap(mapRef, location);
 
   useEffect(() => {
     if (map) {

@@ -11,7 +11,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum City {
+export enum CityName {
   Amsterdam = 'Amsterdam',
   Brussels = 'Brussels',
   Cologne = 'Cologne',

@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import App from './components/app/app';
 import {Offers} from './mocks/offers';
-import {AMSTERDAM} from './mocks/city';
 import {store} from './store';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App offers={Offers} city={AMSTERDAM}/>
+      <App offers={Offers}/>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'));

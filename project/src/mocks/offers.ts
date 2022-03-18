@@ -156,7 +156,7 @@ export const Offers: OfferType[] = [
         longitude: 4.939309666406198,
         zoom: 10,
       },
-      name: 'Amsterdam',
+      name: 'Paris',
     },
     description: 'A quiet cozy and picturesque that hides behind a river.',
     goods: [
