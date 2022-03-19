@@ -4,7 +4,7 @@ import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map/use-map';
-import {AMSTERDAM, Cities} from '../../mocks/cities';
+import {PARIS, Cities} from '../../mocks/cities';
 
 type PropsType = {
   selectedOffer: OfferType | undefined,
@@ -27,7 +27,7 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
 
   const getCityLocation = (cityName: string) => {
     const city = Cities.find(({name}) => name === cityName);
-    return city ? city.location : AMSTERDAM.location;
+    return city ? city.location : PARIS.location;
   }
 
   const location = getCityLocation(cityName);

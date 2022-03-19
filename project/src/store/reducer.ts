@@ -6,8 +6,8 @@ import {CityName} from '../const';
 const getCityOffers = (cityName: string) => Offers.filter(({city}) => city.name === cityName);
 
 const initialState = {
-  cityName: CityName.Amsterdam,
-  offers: getCityOffers(CityName.Amsterdam),
+  cityName: CityName.Paris,
+  offers: getCityOffers(CityName.Paris),
 };
 
 export const reducer = createReducer(initialState, (builder) => {

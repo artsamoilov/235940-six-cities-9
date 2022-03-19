@@ -1,10 +1,10 @@
 import {CityType} from '../types/offer-type';
 
-export const AMSTERDAM: CityType = {
-  name: 'Amsterdam',
+export const PARIS: CityType = {
+  name: 'Paris',
   location: {
-    latitude: 52.38,
-    longitude: 4.89,
+    latitude: 48.85,
+    longitude: 2.35,
     zoom: 12,
   },
 };
