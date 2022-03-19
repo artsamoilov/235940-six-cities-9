@@ -1,5 +1,5 @@
 import {useRef, useEffect} from 'react';
-import {Icon, Marker} from 'leaflet';
+import leaflet, {Icon, Marker} from 'leaflet';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import 'leaflet/dist/leaflet.css';
@@ -33,6 +33,7 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
   const location = getCityLocation(cityName);
   const mapRef = useRef(null);
   const map = useMap(mapRef, location);
+  const markerGroup = leaflet.layerGroup();
 
   useEffect(() => {
     if (map) {
@@ -42,8 +43,12 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
           lng: location.longitude,
         });
 
-        marker.setIcon(selectedOffer && selectedOffer.id === id ? activeIcon : defaultIcon).addTo(map);
+        marker.setIcon(selectedOffer && selectedOffer.id === id ? activeIcon : defaultIcon).addTo(markerGroup);
+        markerGroup.addTo(map);
       });
+    }
+    return () => {
+      markerGroup.clearLayers();
     }
   }, [map, offers, selectedOffer]);
 

@@ -2,9 +2,9 @@ import {useEffect, useState, MutableRefObject} from 'react';
 import leaflet from 'leaflet';
 import {CityType, LocationType} from '../../types/offer-type';
 import {useAppSelector} from '../index';
-import {Cities} from "../../mocks/cities";
+import {Cities} from '../../mocks/cities';
 
-export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: LocationType | undefined): leaflet.Map | null {
+export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: LocationType): leaflet.Map | null {
   const [map, setMap] = useState<leaflet.Map | null>(null);
   const cityName = useAppSelector((state) => state.cityName);
 
