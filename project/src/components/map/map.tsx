@@ -51,7 +51,7 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
     return () => {
       markerGroup.clearLayers();
     };
-  }, [map, markerGroup, offers, selectedOffer]);
+  }, [map, markerGroup, offers, selectedOffer, currentCityOffers]);
 
   return <div style={{height: '100%'}} ref={mapRef} />;
 }
