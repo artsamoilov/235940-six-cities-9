@@ -1,12 +1,12 @@
 import {useRef, useEffect} from 'react';
-import {Icon, Marker} from 'leaflet';
+import leaflet, {Icon, Marker} from 'leaflet';
+import {OfferType} from '../../types/offer-type';
+import {useAppSelector} from '../../hooks';
 import 'leaflet/dist/leaflet.css';
-import {OfferType, CityType} from '../../types/offer-type';
 import useMap from '../../hooks/use-map/use-map';
+import {PARIS, Cities} from '../../mocks/cities';
 
 type PropsType = {
-  offers: OfferType[],
-  city: CityType,
   selectedOffer: OfferType | undefined,
 }
 
@@ -22,22 +22,36 @@ const activeIcon = new Icon({
   iconAnchor: [13, 39],
 });
 
-export default function Map({offers, city, selectedOffer}: PropsType): JSX.Element {
+export default function Map({selectedOffer}: PropsType): JSX.Element {
+  const {cityName, offers} = useAppSelector((state) => state);
+  const currentCityOffers = offers.filter(({city}) => city.name === cityName);
+
+  const getCityLocation = (currentCityName: string) => {
+    const city = Cities.find(({name}) => name === currentCityName);
+    return city ? city.location : PARIS.location;
+  };
+
+  const location = getCityLocation(cityName);
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city.location);
+  const map = useMap(mapRef, location);
+  const markerGroup = leaflet.layerGroup();
 
   useEffect(() => {
     if (map) {
-      offers.forEach(({id, location}) => {
+      currentCityOffers.forEach((offer) => {
         const marker = new Marker({
-          lat: location.latitude,
-          lng: location.longitude,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
 
-        marker.setIcon(selectedOffer && selectedOffer.id === id ? activeIcon : defaultIcon).addTo(map);
+        marker.setIcon(selectedOffer && selectedOffer.id === offer.id ? activeIcon : defaultIcon).addTo(markerGroup);
+        markerGroup.addTo(map);
       });
     }
-  }, [map, offers, selectedOffer]);
+    return () => {
+      markerGroup.clearLayers();
+    };
+  }, [map, markerGroup, offers, selectedOffer, currentCityOffers]);
 
   return <div style={{height: '100%'}} ref={mapRef} />;
 }

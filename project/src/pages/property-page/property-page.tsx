@@ -1,6 +1,6 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {useState} from 'react';
-import {CityType, OfferType} from '../../types/offer-type';
+import {OfferType} from '../../types/offer-type';
 import {AppRoute} from '../../const';
 import {getRatingPercent} from '../../utils';
 import Navigation from '../../components/navigation/navigation';
@@ -14,10 +14,9 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 
 type PropsType = {
   offers: OfferType[],
-  city: CityType,
 }
 
-export default function PropertyPage({offers, city}: PropsType): JSX.Element {
+export default function PropertyPage({offers}: PropsType): JSX.Element {
   const currentOfferId = useParams().id;
   const currentOffer = offers.find((offer: OfferType) => offer.id.toString() === currentOfferId);
 
@@ -31,8 +30,6 @@ export default function PropertyPage({offers, city}: PropsType): JSX.Element {
     const hoveredOffer = offers.find((offer) => offer.id === id);
     setSelectedOffer(hoveredOffer);
   };
-
-  const neighbourOffers = offers.filter((offer) => offer.id.toString() !== currentOfferId);
 
   return (
     <div className='page'>
@@ -97,14 +94,14 @@ export default function PropertyPage({offers, city}: PropsType): JSX.Element {
             </div>
           </div>
           <section className='property__map map'>
-            <Map offers={neighbourOffers} city={city} selectedOffer={selectedOffer}/>
+            <Map selectedOffer={selectedOffer}/>
           </section>
         </section>
         <div className='container'>
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
-              <CardsList offers={neighbourOffers} onCardHover={onCardHover}/>
+              <CardsList onCardHover={onCardHover}/>
             </div>
           </section>
         </div>

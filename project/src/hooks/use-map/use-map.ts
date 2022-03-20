@@ -1,12 +1,26 @@
 import {useEffect, useState, MutableRefObject} from 'react';
 import leaflet from 'leaflet';
-import {LocationType} from '../../types/offer-type';
+import {CityType, LocationType} from '../../types/offer-type';
+import {useAppSelector} from '../index';
+import {Cities} from '../../mocks/cities';
 
 export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: LocationType): leaflet.Map | null {
   const [map, setMap] = useState<leaflet.Map | null>(null);
+  const cityName = useAppSelector((state) => state.cityName);
+
+  const moveToCity = (city: CityType | undefined, currentMap: leaflet.Map) => {
+    if (city) {
+      currentMap.flyTo({
+        lat: city.location.latitude,
+        lng: city.location.longitude,
+      },
+      city.location.zoom,
+      );
+    }
+  };
 
   useEffect(() => {
-    if (mapRef.current !== null && map === null) {
+    if (mapRef.current !== null && map === null && location) {
       const instance = leaflet.map(mapRef.current, {
         center: {
           lat: location.latitude,
@@ -24,7 +38,11 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, loc
 
       setMap(instance);
     }
-  }, [mapRef, map, location]);
+    if (map) {
+      const newCity = Cities.find(({name}) => name === cityName);
+      moveToCity(newCity, map);
+    }
+  }, [mapRef, map, location, cityName]);
 
   return map;
 }
