@@ -5,9 +5,6 @@ const Action = {
   GET_OFFERS: 'GET_OFFERS',
 };
 
-export const changeCity = createAction(Action.CHANGE_CITY, (value) => {
-    return {payload: value};
-  }
-);
+export const changeCity = createAction(Action.CHANGE_CITY, (value) => ({payload: value}));
 
 export const getOffers = createAction(Action.GET_OFFERS);
