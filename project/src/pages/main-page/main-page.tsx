@@ -9,7 +9,7 @@ import Map from '../../components/map/map';
 
 export default function MainPage(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
-  const {cityName, offers} = useAppSelector((state) => state)
+  const {cityName, offers} = useAppSelector((state) => state);
 
   const onCardHover = (id: number) => {
     const currentOffer = offers.find((offer) => offer.id === id);

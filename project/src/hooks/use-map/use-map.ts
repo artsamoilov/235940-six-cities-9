@@ -8,14 +8,14 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, loc
   const [map, setMap] = useState<leaflet.Map | null>(null);
   const cityName = useAppSelector((state) => state.cityName);
 
-  const moveToCity = (city: CityType | undefined, map: leaflet.Map) => {
+  const moveToCity = (city: CityType | undefined, currentMap: leaflet.Map) => {
     if (city) {
-      map.flyTo({
-          lat: city.location.latitude,
-          lng: city.location.longitude,
-        },
-        city.location.zoom
-      )
+      currentMap.flyTo({
+        lat: city.location.latitude,
+        lng: city.location.longitude,
+      },
+      city.location.zoom,
+      );
     }
   };
 
@@ -42,7 +42,7 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, loc
       const newCity = Cities.find(({name}) => name === cityName);
       moveToCity(newCity, map);
     }
-  }, [mapRef, map, location]);
+  }, [mapRef, map, location, cityName]);
 
   return map;
 }

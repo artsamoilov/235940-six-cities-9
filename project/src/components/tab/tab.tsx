@@ -4,7 +4,7 @@ import {changeCity, getOffers} from '../../store/action';
 
 export default function Tab(props: {cityName: string}): JSX.Element {
   const dispatch = useAppDispatch();
-  const cityName = useAppSelector((state) => state.cityName)
+  const cityName = useAppSelector((state) => state.cityName);
 
   return (
     <li className='locations__item'>
@@ -15,4 +15,5 @@ export default function Tab(props: {cityName: string}): JSX.Element {
         <span>{props.cityName}</span>
       </Link>
     </li>
-  )};
+  );
+}

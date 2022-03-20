@@ -1,6 +1,6 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {useState} from 'react';
-import {CityType, OfferType} from '../../types/offer-type';
+import {OfferType} from '../../types/offer-type';
 import {AppRoute} from '../../const';
 import {getRatingPercent} from '../../utils';
 import Navigation from '../../components/navigation/navigation';

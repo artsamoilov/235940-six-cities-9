@@ -25,10 +25,10 @@ const activeIcon = new Icon({
 export default function Map({selectedOffer}: PropsType): JSX.Element {
   const {cityName, offers} = useAppSelector((state) => state);
 
-  const getCityLocation = (cityName: string) => {
-    const city = Cities.find(({name}) => name === cityName);
+  const getCityLocation = (currentCityName: string) => {
+    const city = Cities.find(({name}) => name === currentCityName);
     return city ? city.location : PARIS.location;
-  }
+  };
 
   const location = getCityLocation(cityName);
   const mapRef = useRef(null);
@@ -37,20 +37,20 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      offers.forEach(({id, location}) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
-          lat: location.latitude,
-          lng: location.longitude,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
 
-        marker.setIcon(selectedOffer && selectedOffer.id === id ? activeIcon : defaultIcon).addTo(markerGroup);
+        marker.setIcon(selectedOffer && selectedOffer.id === offer.id ? activeIcon : defaultIcon).addTo(markerGroup);
         markerGroup.addTo(map);
       });
     }
     return () => {
       markerGroup.clearLayers();
-    }
-  }, [map, offers, selectedOffer]);
+    };
+  }, [map, markerGroup, offers, selectedOffer]);
 
   return <div style={{height: '100%'}} ref={mapRef} />;
 }
