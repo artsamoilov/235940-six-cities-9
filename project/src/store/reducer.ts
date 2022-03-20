@@ -7,7 +7,7 @@ const getCityOffers = (cityName: string) => Offers.filter(({city}) => city.name 
 
 const initialState = {
   cityName: CityName.Paris,
-  offers: getCityOffers(CityName.Paris),
+  offers: Offers,
 };
 
 export const reducer = createReducer(initialState, (builder) => {

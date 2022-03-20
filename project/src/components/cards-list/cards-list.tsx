@@ -9,13 +9,14 @@ type PropsType = {
 
 export default function CardsList({onCardHover}: PropsType): JSX.Element {
   const [, setActiveCardId] = useState(0);
-  const offers = useAppSelector((state) => state.offers);
+  const {cityName, offers} = useAppSelector((state) => state);
+  const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const cardHoverHandler = (id: number) => onCardHover(id);
 
   return (
     <>
-      {offers.map((offer: OfferType): JSX.Element =>
+      {currentCityOffers.map((offer: OfferType): JSX.Element =>
         <Card key={offer.id} offer={offer} setActiveCardId={setActiveCardId} cardHoverHandler={cardHoverHandler}/>)}
     </>
   );

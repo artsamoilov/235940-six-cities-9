@@ -24,6 +24,7 @@ const activeIcon = new Icon({
 
 export default function Map({selectedOffer}: PropsType): JSX.Element {
   const {cityName, offers} = useAppSelector((state) => state);
+  const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const getCityLocation = (currentCityName: string) => {
     const city = Cities.find(({name}) => name === currentCityName);
@@ -37,7 +38,7 @@ export default function Map({selectedOffer}: PropsType): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      offers.forEach((offer) => {
+      currentCityOffers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
           lng: offer.location.longitude,
