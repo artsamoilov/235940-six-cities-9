@@ -22,24 +22,28 @@ export default function Sort(): JSX.Element {
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
 
         <li className={`places__option ${sortingType === SortingOption.Popular ? 'places__option--active' : ''}`}
-            tabIndex={0}
-            onClick={(evt) => sortingChangeHandler(evt)}
-        >{SortingOption.Popular}</li>
+          tabIndex={0}
+          onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.Popular}
+        </li>
 
         <li className={`places__option ${sortingType === SortingOption.PriceLowToHigh ? 'places__option--active' : ''}`}
-            tabIndex={0}
-            onClick={(evt) => sortingChangeHandler(evt)}
-        >{SortingOption.PriceLowToHigh}</li>
+          tabIndex={0}
+          onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.PriceLowToHigh}
+        </li>
 
         <li className={`places__option ${sortingType === SortingOption.PriceHighToLow ? 'places__option--active' : ''}`}
-            tabIndex={0}
-            onClick={(evt) => sortingChangeHandler(evt)}
-        >{SortingOption.PriceHighToLow}</li>
+          tabIndex={0}
+          onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.PriceHighToLow}
+        </li>
 
         <li className={`places__option ${sortingType === SortingOption.TopRatedFirst ? 'places__option--active' : ''}`}
-            tabIndex={0}
-            onClick={(evt) => sortingChangeHandler(evt)}
-        >{SortingOption.TopRatedFirst}</li>
+          tabIndex={0}
+          onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.TopRatedFirst}
+        </li>
 
       </ul>
     </form>

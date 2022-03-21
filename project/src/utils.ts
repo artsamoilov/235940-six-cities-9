@@ -14,4 +14,4 @@ export const sortOffers = (offers: OfferType[], sortingType: string): OfferType[
     default:
       return offers;
   }
-}
+};
