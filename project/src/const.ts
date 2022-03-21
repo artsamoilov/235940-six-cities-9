@@ -20,5 +20,12 @@ export enum CityName {
   Paris = 'Paris',
 }
 
+export enum SortingOption {
+  Popular = 'Popular',
+  PriceLowToHigh = 'Price: low to high',
+  PriceHighToLow = 'Price: high to low',
+  TopRatedFirst = 'Top rated first',
+}
+
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;

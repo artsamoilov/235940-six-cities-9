@@ -50,7 +50,7 @@ export const Offers: OfferType[] = [
     },
     maxAdults: 2,
     previewImage: 'img/room.jpg',
-    price: 80,
+    price: 180,
     rating: 4.4,
     title: 'Wood and stone place',
     type: 'private room',
