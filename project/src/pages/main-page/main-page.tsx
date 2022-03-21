@@ -6,7 +6,7 @@ import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
 import CardsList from '../../components/cards-list/cards-list';
 import Map from '../../components/map/map';
-import Sort from '../../components/sort/sort';
+import Sorting from '../../components/sorting/sorting';
 
 export default function MainPage(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
@@ -32,7 +32,7 @@ export default function MainPage(): JSX.Element {
             <section className='cities__places places'>
               <h2 className='visually-hidden'>Places</h2>
               <b className='places__found'>{currentCityOffers.length} places to stay in {cityName}</b>
-              <Sort />
+              <Sorting />
               <div className='cities__places-list places__list tabs__content'>
                 <CardsList onCardHover={onCardHover}/>
               </div>
