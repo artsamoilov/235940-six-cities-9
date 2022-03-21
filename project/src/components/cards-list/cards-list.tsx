@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
+import {sortOffers} from '../../utils';
 import Card from '../card/card';
 
 type PropsType = {
@@ -9,14 +10,15 @@ type PropsType = {
 
 export default function CardsList({onCardHover}: PropsType): JSX.Element {
   const [, setActiveCardId] = useState(0);
-  const {cityName, offers} = useAppSelector((state) => state);
+  const {cityName, sortingType, offers} = useAppSelector((state) => state);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
+  const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 
   const cardHoverHandler = (id: number) => onCardHover(id);
 
   return (
     <>
-      {currentCityOffers.map((offer: OfferType): JSX.Element =>
+      {sortedCityOffers.map((offer: OfferType): JSX.Element =>
         <Card key={offer.id} offer={offer} setActiveCardId={setActiveCardId} cardHoverHandler={cardHoverHandler}/>)}
     </>
   );
