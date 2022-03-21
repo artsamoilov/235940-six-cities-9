@@ -11,8 +11,8 @@ export default function SortingItem({sortingType, sortingChangeHandler}: PropsTy
 
   return (
     <li className={`places__option ${storedSortingType === sortingType ? 'places__option--active' : ''}`}
-        tabIndex={0}
-        onClick={(evt) => sortingChangeHandler(evt)}
+      tabIndex={0}
+      onClick={(evt) => sortingChangeHandler(evt)}
     >{sortingType}
     </li>
   );
