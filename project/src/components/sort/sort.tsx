@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from 'react';
-import {useAppSelector, useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeSorting} from '../../store/action';
+import {SortingOption} from '../../const';
 
 export default function Sort(): JSX.Element {
   const [isOpened, setIsOpened] = useState(false);
@@ -19,10 +20,27 @@ export default function Sort(): JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
-        <li className={`places__option places__option--active`} tabIndex={0} onClick={(evt) => sortingChangeHandler(evt)}>Popular</li>
-        <li className='places__option' tabIndex={0} onClick={(evt) => sortingChangeHandler(evt)}>Price: low to high</li>
-        <li className='places__option' tabIndex={0} onClick={(evt) => sortingChangeHandler(evt)}>Price: high to low</li>
-        <li className='places__option' tabIndex={0} onClick={(evt) => sortingChangeHandler(evt)}>Top rated first</li>
+
+        <li className={`places__option ${sortingType === SortingOption.Popular ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.Popular}</li>
+
+        <li className={`places__option ${sortingType === SortingOption.PriceLowToHigh ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.PriceLowToHigh}</li>
+
+        <li className={`places__option ${sortingType === SortingOption.PriceHighToLow ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.PriceHighToLow}</li>
+
+        <li className={`places__option ${sortingType === SortingOption.TopRatedFirst ? 'places__option--active' : ''}`}
+            tabIndex={0}
+            onClick={(evt) => sortingChangeHandler(evt)}
+        >{SortingOption.TopRatedFirst}</li>
+
       </ul>
     </form>
   );
