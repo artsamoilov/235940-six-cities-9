@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {AppRoute} from '../../const';
 import {getRatingPercent} from '../../utils';
+import {useAppSelector} from '../../hooks';
 import Navigation from '../../components/navigation/navigation';
 import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
@@ -12,11 +13,8 @@ import CommentForm from '../../components/comment-form/comment-form';
 import Map from '../../components/map/map';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 
-type PropsType = {
-  offers: OfferType[],
-}
-
-export default function PropertyPage({offers}: PropsType): JSX.Element {
+export default function PropertyPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
   const currentOfferId = useParams().id;
   const currentOffer = offers.find((offer: OfferType) => offer.id.toString() === currentOfferId);
 
