@@ -29,8 +29,8 @@ export const Cities: CityType[] = [
   {
     name: 'Cologne',
     location: {
-      latitude: 45.58,
-      longitude: 9.94,
+      latitude: 50.93,
+      longitude: 6.95,
       zoom: 12,
     },
   },
