@@ -27,5 +27,9 @@ export enum SortingOption {
   TopRatedFirst = 'Top rated first',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+}
+
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;

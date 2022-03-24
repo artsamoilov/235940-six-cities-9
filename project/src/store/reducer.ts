@@ -6,12 +6,14 @@ import {OfferType} from '../types/offer-type';
 type InitialState = {
   cityName: string,
   sortingType: string,
+  isDataLoaded: boolean,
   offers: OfferType[],
 };
 
 const initialState: InitialState = {
   cityName: CityName.Paris,
   sortingType: SortingOption.Popular,
+  isDataLoaded: false,
   offers: [],
 };
 
@@ -25,5 +27,6 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+      state.isDataLoaded = true;
     });
 });
