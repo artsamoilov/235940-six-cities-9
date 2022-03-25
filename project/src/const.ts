@@ -29,6 +29,8 @@ export enum SortingOption {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 export const MAX_RATING = 5;
