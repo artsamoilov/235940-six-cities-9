@@ -14,7 +14,7 @@ const Action = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   CLEAR_ERROR: 'CLEAR_ERROR',
-}
+};
 
 export const fetchOffersAction = createAsyncThunk(
   Action.FETCH_OFFERS,

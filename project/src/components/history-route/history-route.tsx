@@ -26,4 +26,4 @@ export default function HistoryRouter({basename, children, history}: HistoryRout
       {children}
     </Router>
   );
-};
+}
