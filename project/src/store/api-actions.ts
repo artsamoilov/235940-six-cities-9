@@ -1,14 +1,21 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {api, store} from './index';
-import {APIRoute, AuthorizationStatus} from '../const';
+import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 import {OfferType} from '../types/offer-type';
-import {loadOffers, requireAuthorization} from './action';
+import {loadOffers, redirectToRoute, requireAuthorization} from './action';
 import {UserData} from '../types/user-data';
 import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from '../services/token';
 
+const Action = {
+  FETCH_OFFERS: 'FETCH_OFFERS',
+  CHECK_AUTH: 'CHECK_AUTH',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+}
+
 export const fetchOffersAction = createAsyncThunk(
-  'LOAD_OFFERS',
+  Action.FETCH_OFFERS,
   async () => {
     const {data} = await api.get<OfferType[]>(APIRoute.Offers);
     store.dispatch(loadOffers(data));
@@ -16,7 +23,7 @@ export const fetchOffersAction = createAsyncThunk(
 );
 
 export const checkAuthAction = createAsyncThunk(
-  'CHECK_AUTH',
+  Action.CHECK_AUTH,
   async () => {
     await api.get(APIRoute.Login);
     store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
@@ -24,16 +31,17 @@ export const checkAuthAction = createAsyncThunk(
 );
 
 export const loginAction = createAsyncThunk(
-  'LOGIN',
+  Action.LOGIN,
   async ({email, password}: AuthData) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    store.dispatch(redirectToRoute(AppRoute.Main));
   },
 );
 
 export const logoutAction = createAsyncThunk(
-  'LOGOUT',
+  Action.LOGOUT,
   async () => {
     await api.delete(APIRoute.Logout);
     dropToken();
