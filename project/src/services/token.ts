@@ -1,4 +1,4 @@
-const AUTH_TOKEN_KEY = 'six-cities-token';
+const AUTH_TOKEN_KEY = 'X-Token';
 
 export const getToken = (): string => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);

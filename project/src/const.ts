@@ -33,5 +33,11 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum HTTPCode {
+  BadRequest = 400,
+  Unauthorized = 401,
+  NotFound = 404,
+}
+
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;
