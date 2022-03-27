@@ -29,6 +29,14 @@ export enum SortingOption {
 
 export enum APIRoute {
   Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
+export enum HTTPCode {
+  BadRequest = 400,
+  Unauthorized = 401,
+  NotFound = 404,
 }
 
 export const MAX_RATING = 5;
