@@ -6,7 +6,6 @@ import {UserData} from '../types/user-data';
 import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from '../services/token';
 import {errorHandle} from '../services/error-handle';
-import {useParams} from 'react-router-dom';
 import {CommentType} from '../types/comment-type';
 import {
   loadCurrentOffer,
@@ -131,5 +130,5 @@ export const postCommentAction = createAsyncThunk(
     } catch (error) {
       errorHandle(error);
     }
-  }
-)
+  },
+);
