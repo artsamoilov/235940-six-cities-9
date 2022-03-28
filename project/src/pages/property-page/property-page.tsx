@@ -1,7 +1,7 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {useState} from 'react';
 import {OfferType} from '../../types/offer-type';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {getRatingPercent} from '../../utils';
 import {useAppSelector} from '../../hooks';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction} from '../../store/api-actions';
@@ -95,7 +95,7 @@ export default function PropertyPage(): JSX.Element {
               </div>
               <section className='property__reviews reviews'>
                 <ReviewsList />
-                <CommentForm />
+                {authorizationStatus === AuthorizationStatus.Auth ? <CommentForm /> : ''}
               </section>
             </div>
           </div>
