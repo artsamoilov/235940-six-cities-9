@@ -1,13 +1,14 @@
-import {Reviews} from '../../mocks/reviews';
-import {ReviewType} from '../../types/review-type';
+import {CommentType} from '../../types/comment-type';
+import {useAppSelector} from '../../hooks';
 import Review from '../review/review';
 
 export default function ReviewsList(): JSX.Element {
+  const comments = useAppSelector((state) => state.comments);
   return (
     <>
-      <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{Reviews.length}</span></h2>
+      <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{comments.length}</span></h2>
       <ul className='reviews__list'>
-        {Reviews.map((review: ReviewType, index: number) => <Review key={review.id} {...Reviews[index]}/>)}
+        {comments.map((comment: CommentType) => <Review key={comment.id} {...comment}/>)}
       </ul>
     </>
   );
