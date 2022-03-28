@@ -18,17 +18,22 @@ import Spinner from '../../components/spinner/spinner';
 
 export default function PropertyPage(): JSX.Element {
   const {offers, currentOffer, nearbyOffers, authorizationStatus} = useAppSelector((state) => state);
+  const offerId = useParams().id;
 
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
-  if (!offers.find((offer) => offer.id === Number(useParams().id))) {
+  if (!offers.find((offer) => offer.id === Number(offerId))) {
     return <Navigate to={AppRoute.NotFound}/>;
   }
 
-  if (currentOffer.id !== Number(useParams().id)) {
-    store.dispatch(fetchCurrentOfferAction());
-    store.dispatch(fetchNearbyOffersAction());
-    store.dispatch(fetchCommentsAction());
+  const loadOfferData = (offerId: string | undefined) => {
+    store.dispatch(fetchCurrentOfferAction(offerId));
+    store.dispatch(fetchNearbyOffersAction(offerId));
+    store.dispatch(fetchCommentsAction(offerId));
+  };
+
+  if (currentOffer.id !== Number(offerId)) {
+    loadOfferData(offerId);
     return <Spinner />;
   }
 

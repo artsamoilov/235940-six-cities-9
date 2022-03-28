@@ -27,6 +27,7 @@ const Action = {
   FETCH_CURRENT_OFFER: 'FETCH_CURRENT_OFFER',
   FETCH_NEARBY_OFFERS: 'FETCH_NEARBY_OFFERS',
   FETCH_COMMENTS: 'FETCH_COMMENTS',
+  POST_COMMENT: 'POST_COMMENT',
 };
 
 export const fetchOffersAction = createAsyncThunk(
@@ -87,9 +88,9 @@ export const logoutAction = createAsyncThunk(
 
 export const fetchCurrentOfferAction = createAsyncThunk(
   Action.FETCH_CURRENT_OFFER,
-  async () => {
+  async (offerId: string | undefined) => {
     try {
-      const {data} = await api.get<OfferType>(`${APIRoute.Offers}/${useParams().id}`);
+      const {data} = await api.get<OfferType>(`${APIRoute.Offers}/${offerId}`);
       store.dispatch(loadCurrentOffer(data));
     } catch (error) {
       errorHandle(error);
@@ -99,9 +100,9 @@ export const fetchCurrentOfferAction = createAsyncThunk(
 
 export const fetchNearbyOffersAction = createAsyncThunk(
   Action.FETCH_NEARBY_OFFERS,
-  async () => {
+  async (offerId: string | undefined) => {
     try {
-      const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${useParams().id}/nearby`);
+      const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${offerId}/nearby`);
       store.dispatch(loadNearbyOffers(data));
     } catch (error) {
       errorHandle(error);
@@ -111,12 +112,24 @@ export const fetchNearbyOffersAction = createAsyncThunk(
 
 export const fetchCommentsAction = createAsyncThunk(
   Action.FETCH_COMMENTS,
-  async () => {
+  async (offerId: string | undefined) => {
     try {
-      const {data} = await api.get<CommentType[]>(`${APIRoute.Comments}/${useParams().id}`);
+      const {data} = await api.get<CommentType[]>(`${APIRoute.Comments}/${offerId}`);
       store.dispatch(loadComments(data));
     } catch (error) {
       errorHandle(error);
     }
   },
 );
+
+export const postCommentAction = createAsyncThunk(
+  Action.POST_COMMENT,
+  async ({offerId, rating, comment}: {offerId: string | undefined, rating: number, comment: string}) => {
+    try {
+      const {data} = await api.post(`${APIRoute.Comments}/${offerId}`, {rating: rating, comment: comment});
+      store.dispatch(loadComments(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  }
+)
