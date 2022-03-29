@@ -2,8 +2,9 @@ import {Link} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {logoutAction} from '../../store/api-actions';
+import {memo} from 'react';
 
-export default function Navigation(): JSX.Element {
+function Navigation(): JSX.Element {
   const {authorizationStatus, userData} = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
 
@@ -42,3 +43,5 @@ export default function Navigation(): JSX.Element {
     </nav>
   );
 }
+
+export default memo(Navigation);

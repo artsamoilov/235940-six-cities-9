@@ -1,8 +1,9 @@
 import {CommentType} from '../../types/comment-type';
 import {useAppSelector} from '../../hooks';
+import {memo} from 'react';
 import Review from '../review/review';
 
-export default function ReviewsList(): JSX.Element {
+function ReviewsList(): JSX.Element {
   const comments = useAppSelector((state) => state.comments);
   return (
     <>
@@ -13,3 +14,5 @@ export default function ReviewsList(): JSX.Element {
     </>
   );
 }
+
+export default memo(ReviewsList);

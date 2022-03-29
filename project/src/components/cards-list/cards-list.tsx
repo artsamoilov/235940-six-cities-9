@@ -1,26 +1,25 @@
-import {useState} from 'react';
+import {useCallback} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import {sortOffers} from '../../utils';
 import Card from '../card/card';
 
 type PropsType = {
-  onCardHover: (id: number) => void,
+  handleCardHover: (id: number) => void,
   offers: OfferType[],
 }
 
-export default function CardsList({onCardHover, offers}: PropsType): JSX.Element {
-  const [, setActiveCardId] = useState(0);
+export default function CardsList({handleCardHover, offers}: PropsType): JSX.Element {
   const {cityName, sortingType} = useAppSelector((state) => state);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 
-  const cardHoverHandler = (id: number) => onCardHover(id);
+  const cardHoverHandler = useCallback((id: number) => handleCardHover(id), []);
 
   return (
     <>
       {sortedCityOffers.map((offer: OfferType): JSX.Element =>
-        <Card key={offer.id} offer={offer} setActiveCardId={setActiveCardId} cardHoverHandler={cardHoverHandler}/>)}
+        <Card key={offer.id} offer={offer} cardHoverHandler={cardHoverHandler}/>)}
     </>
   );
 }

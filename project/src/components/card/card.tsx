@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction} from 'react';
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../utils';
@@ -6,18 +6,12 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  setActiveCardId: Dispatch<SetStateAction<number>>,
-  cardHoverHandler: (id: number) => void,
+  cardHoverHandler: Function,
 }
 
-export default function Card({offer, setActiveCardId, cardHoverHandler}: PropsType): JSX.Element {
-  const mouseOverHandler = (id: number): void => {
-    setActiveCardId(id);
-    cardHoverHandler(id);
-  };
-
+function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
   return (
-    <article className='cities__place-card place-card' onMouseOver={() => mouseOverHandler(offer.id)} onMouseLeave={() => mouseOverHandler(-1)}>
+    <article className='cities__place-card place-card' onMouseOver={() => cardHoverHandler(offer.id)} onMouseLeave={() => cardHoverHandler(-1)}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${offer.id}`}>
@@ -51,3 +45,5 @@ export default function Card({offer, setActiveCardId, cardHoverHandler}: PropsTy
     </article>
   );
 }
+
+export default memo(Card);

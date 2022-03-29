@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import Tabs from '../../components/tabs/tabs';
@@ -13,10 +13,10 @@ export default function MainPage(): JSX.Element {
   const {cityName, offers} = useAppSelector((state) => state);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
-  const onCardHover = (id: number) => {
+  const handleCardHover = useCallback((id: number) => {
     const currentOffer = offers.find((offer) => offer.id === id);
     setSelectedOffer(currentOffer);
-  };
+  }, []);
 
   return (
     <div className='page page--gray page--main'>
@@ -34,7 +34,7 @@ export default function MainPage(): JSX.Element {
               <b className='places__found'>{currentCityOffers.length} places to stay in {cityName}</b>
               <Sorting />
               <div className='cities__places-list places__list tabs__content'>
-                <CardsList onCardHover={onCardHover} offers={offers}/>
+                <CardsList handleCardHover={handleCardHover} offers={offers}/>
               </div>
             </section>
             <div className='cities__right-section'>

@@ -1,10 +1,10 @@
-import React, {SyntheticEvent, useState} from 'react';
+import React, {memo, SyntheticEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeSorting} from '../../store/action';
 import {SortingOption} from '../../const';
 import SortingItem from '../sorting-item/sorting-item';
 
-export default function Sorting(): JSX.Element {
+function Sorting(): JSX.Element {
   const [isOpened, setIsOpened] = useState(false);
   const dispatch = useAppDispatch();
   const sortingType = useAppSelector((state) => state.sortingType);
@@ -29,3 +29,5 @@ export default function Sorting(): JSX.Element {
     </form>
   );
 }
+
+export default memo(Sorting);
