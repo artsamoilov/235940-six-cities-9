@@ -2,11 +2,20 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {api, store} from './index';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../const';
 import {OfferType} from '../types/offer-type';
-import {loadOffers, loadUserData, redirectToRoute, requireAuthorization} from './action';
 import {UserData} from '../types/user-data';
 import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from '../services/token';
 import {errorHandle} from '../services/error-handle';
+import {CommentType} from '../types/comment-type';
+import {
+  loadCurrentOffer,
+  loadNearbyOffers,
+  loadOffers,
+  loadUserData,
+  redirectToRoute,
+  requireAuthorization,
+  loadComments
+} from './action';
 
 const Action = {
   FETCH_OFFERS: 'FETCH_OFFERS',
@@ -14,6 +23,10 @@ const Action = {
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
   CLEAR_ERROR: 'CLEAR_ERROR',
+  FETCH_CURRENT_OFFER: 'FETCH_CURRENT_OFFER',
+  FETCH_NEARBY_OFFERS: 'FETCH_NEARBY_OFFERS',
+  FETCH_COMMENTS: 'FETCH_COMMENTS',
+  POST_COMMENT: 'POST_COMMENT',
 };
 
 export const fetchOffersAction = createAsyncThunk(
@@ -66,6 +79,54 @@ export const logoutAction = createAsyncThunk(
       dropToken();
       store.dispatch(loadUserData({} as UserData));
       store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchCurrentOfferAction = createAsyncThunk(
+  Action.FETCH_CURRENT_OFFER,
+  async (offerId: string | undefined) => {
+    try {
+      const {data} = await api.get<OfferType>(`${APIRoute.Offers}/${offerId}`);
+      store.dispatch(loadCurrentOffer(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchNearbyOffersAction = createAsyncThunk(
+  Action.FETCH_NEARBY_OFFERS,
+  async (offerId: string | undefined) => {
+    try {
+      const {data} = await api.get<OfferType[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+      store.dispatch(loadNearbyOffers(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk(
+  Action.FETCH_COMMENTS,
+  async (offerId: string | undefined) => {
+    try {
+      const {data} = await api.get<CommentType[]>(`${APIRoute.Comments}/${offerId}`);
+      store.dispatch(loadComments(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const postCommentAction = createAsyncThunk(
+  Action.POST_COMMENT,
+  async ({offerId, rating, comment}: {offerId: string | undefined, rating: number, comment: string}) => {
+    try {
+      const {data} = await api.post(`${APIRoute.Comments}/${offerId}`, {rating: rating, comment: comment});
+      store.dispatch(loadComments(data));
     } catch (error) {
       errorHandle(error);
     }

@@ -8,6 +8,7 @@ import {PARIS, Cities} from '../../mocks/cities';
 
 type PropsType = {
   selectedOffer: OfferType | undefined,
+  offers: OfferType[],
 }
 
 const defaultIcon = new Icon({
@@ -22,8 +23,8 @@ const activeIcon = new Icon({
   iconAnchor: [13, 39],
 });
 
-export default function Map({selectedOffer}: PropsType): JSX.Element {
-  const {cityName, offers} = useAppSelector((state) => state);
+export default function Map({selectedOffer, offers}: PropsType): JSX.Element {
+  const cityName = useAppSelector((state) => state.cityName);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const getCityLocation = (currentCityName: string) => {

@@ -6,11 +6,12 @@ import Card from '../card/card';
 
 type PropsType = {
   onCardHover: (id: number) => void,
+  offers: OfferType[],
 }
 
-export default function CardsList({onCardHover}: PropsType): JSX.Element {
+export default function CardsList({onCardHover, offers}: PropsType): JSX.Element {
   const [, setActiveCardId] = useState(0);
-  const {cityName, sortingType, offers} = useAppSelector((state) => state);
+  const {cityName, sortingType} = useAppSelector((state) => state);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 

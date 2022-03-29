@@ -1,9 +1,11 @@
 import {Navigate, useParams} from 'react-router-dom';
 import {useState} from 'react';
 import {OfferType} from '../../types/offer-type';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {getRatingPercent} from '../../utils';
 import {useAppSelector} from '../../hooks';
+import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction} from '../../store/api-actions';
+import {store} from '../../store';
 import Navigation from '../../components/navigation/navigation';
 import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
@@ -12,16 +14,27 @@ import PropertyGallery from '../../components/property-gallery/property-gallery'
 import CommentForm from '../../components/comment-form/comment-form';
 import Map from '../../components/map/map';
 import ReviewsList from '../../components/reviews-list/reviews-list';
+import Spinner from '../../components/spinner/spinner';
 
 export default function PropertyPage(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const {offers, currentOffer, nearbyOffers, authorizationStatus} = useAppSelector((state) => state);
   const currentOfferId = useParams().id;
-  const currentOffer = offers.find((offer: OfferType) => offer.id.toString() === currentOfferId);
 
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
 
-  if (!currentOffer) {
-    return <Navigate to={AppRoute.SignIn}/>;
+  if (!offers.find((offer) => offer.id === Number(currentOfferId))) {
+    return <Navigate to={AppRoute.NotFound}/>;
+  }
+
+  const loadOfferData = (offerId: string | undefined) => {
+    store.dispatch(fetchCurrentOfferAction(offerId));
+    store.dispatch(fetchNearbyOffersAction(offerId));
+    store.dispatch(fetchCommentsAction(offerId));
+  };
+
+  if (currentOffer.id !== Number(currentOfferId)) {
+    loadOfferData(currentOfferId);
+    return <Spinner />;
   }
 
   const onCardHover = (id: number) => {
@@ -87,19 +100,19 @@ export default function PropertyPage(): JSX.Element {
               </div>
               <section className='property__reviews reviews'>
                 <ReviewsList />
-                <CommentForm />
+                {authorizationStatus === AuthorizationStatus.Auth ? <CommentForm /> : ''}
               </section>
             </div>
           </div>
           <section className='property__map map'>
-            <Map selectedOffer={selectedOffer}/>
+            <Map selectedOffer={selectedOffer} offers={nearbyOffers}/>
           </section>
         </section>
         <div className='container'>
           <section className='near-places places'>
             <h2 className='near-places__title'>Other places in the neighbourhood</h2>
             <div className='near-places__list places__list'>
-              <CardsList onCardHover={onCardHover}/>
+              <CardsList onCardHover={onCardHover} offers={nearbyOffers}/>
             </div>
           </section>
         </div>
