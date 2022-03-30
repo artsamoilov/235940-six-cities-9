@@ -5,7 +5,8 @@ import {logoutAction} from '../../store/api-actions';
 import {memo} from 'react';
 
 function Navigation(): JSX.Element {
-  const {authorizationStatus, userData} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const userData = useAppSelector(({DATA}) => DATA.userData);
   const dispatch = useAppDispatch();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {

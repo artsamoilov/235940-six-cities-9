@@ -6,7 +6,7 @@ import {Cities} from '../../mocks/cities';
 
 export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: LocationType): leaflet.Map | null {
   const [map, setMap] = useState<leaflet.Map | null>(null);
-  const cityName = useAppSelector((state) => state.cityName);
+  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
 
   const moveToCity = (city: CityType | undefined, currentMap: leaflet.Map) => {
     if (city) {

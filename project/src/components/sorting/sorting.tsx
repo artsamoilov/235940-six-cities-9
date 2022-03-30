@@ -1,13 +1,13 @@
 import React, {memo, SyntheticEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeSorting} from '../../store/action';
+import {changeSorting} from '../../store/view-process/view-process';
 import {SortingOption} from '../../const';
 import SortingItem from '../sorting-item/sorting-item';
 
 function Sorting(): JSX.Element {
   const [isOpened, setIsOpened] = useState(false);
   const dispatch = useAppDispatch();
-  const sortingType = useAppSelector((state) => state.sortingType);
+  const sortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
 
   const sortingChangeHandler = (event: SyntheticEvent) => dispatch(changeSorting(event.currentTarget.textContent));
 

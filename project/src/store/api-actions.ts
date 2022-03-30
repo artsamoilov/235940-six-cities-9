@@ -7,15 +7,9 @@ import {AuthData} from '../types/auth-data';
 import {dropToken, saveToken} from '../services/token';
 import {errorHandle} from '../services/error-handle';
 import {CommentType} from '../types/comment-type';
-import {
-  loadCurrentOffer,
-  loadNearbyOffers,
-  loadOffers,
-  loadUserData,
-  redirectToRoute,
-  requireAuthorization,
-  loadComments
-} from './action';
+import {redirectToRoute,} from './action';
+import {requireAuthorization} from './user-process/user-process';
+import {loadOffers, loadUserData, loadCurrentOffer, loadNearbyOffers, loadComments} from './offers-data/offers-data';
 
 const Action = {
   FETCH_OFFERS: 'FETCH_OFFERS',

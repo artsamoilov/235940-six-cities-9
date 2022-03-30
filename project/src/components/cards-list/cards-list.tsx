@@ -10,7 +10,7 @@ type PropsType = {
 }
 
 export default function CardsList({handleCardHover, offers}: PropsType): JSX.Element {
-  const {cityName, sortingType} = useAppSelector((state) => state);
+  const {cityName, sortingType} = useAppSelector(({VIEW}) => VIEW);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 

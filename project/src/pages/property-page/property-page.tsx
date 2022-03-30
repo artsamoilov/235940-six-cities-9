@@ -17,7 +17,8 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import Spinner from '../../components/spinner/spinner';
 
 export default function PropertyPage(): JSX.Element {
-  const {offers, currentOffer, nearbyOffers, authorizationStatus} = useAppSelector((state) => state);
+  const {offers, currentOffer, nearbyOffers} = useAppSelector(({DATA}) => DATA);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
   const currentOfferId = useParams().id;
 
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);

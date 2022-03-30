@@ -10,7 +10,8 @@ import Sorting from '../../components/sorting/sorting';
 
 export default function MainPage(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
-  const {cityName, offers} = useAppSelector((state) => state);
+  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
+  const offers = useAppSelector(({DATA}) => DATA.offers);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const handleCardHover = useCallback((id: number) => {

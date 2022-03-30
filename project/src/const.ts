@@ -41,5 +41,11 @@ export enum HTTPCode {
   NotFound = 404,
 }
 
+export enum NameSpace {
+  Data = 'DATA',
+  View = 'VIEW',
+  User = 'USER',
+}
+
 export const MAX_RATING = 5;
 export const MAX_PERCENT = 100;
