@@ -14,7 +14,7 @@ export default function CardsList({handleCardHover, offers}: PropsType): JSX.Ele
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 
-  const cardHoverHandler = useCallback((id: number) => handleCardHover(id), []);
+  const cardHoverHandler = useCallback((id: number) => handleCardHover(id), [cityName]);
 
   return (
     <>

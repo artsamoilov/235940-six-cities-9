@@ -17,7 +17,7 @@ export default function MainPage(): JSX.Element {
   const handleCardHover = useCallback((id: number) => {
     const currentOffer = offers.find((offer) => offer.id === id);
     setSelectedOffer(currentOffer);
-  }, []);
+  }, [cityName]);
 
   return (
     <div className='page page--gray page--main'>
