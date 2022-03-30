@@ -6,7 +6,7 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  cardHoverHandler: Function,
+  cardHoverHandler: (id: number) => void,
 }
 
 function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
