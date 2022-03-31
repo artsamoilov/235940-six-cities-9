@@ -13,7 +13,8 @@ import Spinner from '../spinner/spinner';
 import HistoryRouter from '../history-route/history-route';
 
 export default function App(): JSX.Element {
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {isDataLoaded} = useAppSelector(({DATA}) => DATA);
 
   if (isAuthStatusUnknown(authorizationStatus) || !isDataLoaded) {
     return <Spinner />;

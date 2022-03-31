@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {changeCity} from '../../store/action';
+import {changeCity} from '../../store/view-process/view-process';
 
 export default function Tab(props: {cityName: string}): JSX.Element {
   const dispatch = useAppDispatch();
-  const cityName = useAppSelector((state) => state.cityName);
+  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
 
   return (
     <li className='locations__item'>

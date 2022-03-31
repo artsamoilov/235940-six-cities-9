@@ -1,4 +1,4 @@
-import {FormEvent, useState} from 'react';
+import {FormEvent, memo, useState} from 'react';
 import {postCommentAction} from '../../store/api-actions';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
@@ -10,7 +10,7 @@ type PropsType = {
   }
 }
 
-export default function CommentForm(): JSX.Element {
+function CommentForm(): JSX.Element {
   const offerId = useParams().id;
   const [formData, setFormData] = useState({
     rating: '',
@@ -81,3 +81,5 @@ export default function CommentForm(): JSX.Element {
     </form>
   );
 }
+
+export default memo(CommentForm);

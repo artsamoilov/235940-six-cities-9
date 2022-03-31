@@ -24,7 +24,7 @@ const activeIcon = new Icon({
 });
 
 export default function Map({selectedOffer, offers}: PropsType): JSX.Element {
-  const cityName = useAppSelector((state) => state.cityName);
+  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const getCityLocation = (currentCityName: string) => {

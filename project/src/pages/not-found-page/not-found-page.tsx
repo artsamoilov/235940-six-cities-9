@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 import Header from '../../components/header/header';
 
 export default function NotFoundPage(): JSX.Element {
@@ -13,7 +14,7 @@ export default function NotFoundPage(): JSX.Element {
             <section className="cities__no-places">
               <div className="cities__status-wrapper tabs__content">
                 <b className="cities__status">404 Not Found</b>
-                <p className="cities__status-description"><Link to='/'>Return to main page</Link></p>
+                <p className="cities__status-description"><Link to={AppRoute.Main}>Return to main page</Link></p>
               </div>
             </section>
             <div className="cities__right-section" />

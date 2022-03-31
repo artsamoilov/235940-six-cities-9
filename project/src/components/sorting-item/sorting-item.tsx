@@ -7,7 +7,7 @@ type PropsType = {
 }
 
 export default function SortingItem({sortingType, sortingChangeHandler}: PropsType): JSX.Element {
-  const storedSortingType = useAppSelector((store) => store.sortingType);
+  const storedSortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
 
   return (
     <li className={`places__option ${storedSortingType === sortingType ? 'places__option--active' : ''}`}

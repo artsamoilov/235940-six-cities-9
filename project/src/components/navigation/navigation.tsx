@@ -2,9 +2,11 @@ import {Link} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {logoutAction} from '../../store/api-actions';
+import {memo} from 'react';
 
-export default function Navigation(): JSX.Element {
-  const {authorizationStatus, userData} = useAppSelector((state) => state);
+function Navigation(): JSX.Element {
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const userData = useAppSelector(({DATA}) => DATA.userData);
   const dispatch = useAppDispatch();
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -42,3 +44,5 @@ export default function Navigation(): JSX.Element {
     </nav>
   );
 }
+
+export default memo(Navigation);

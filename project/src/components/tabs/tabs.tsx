@@ -1,8 +1,8 @@
 import {CityName} from '../../const';
 import Tab from '../tab/tab';
+import {memo} from 'react';
 
-
-export default function Tabs(): JSX.Element {
+function Tabs(): JSX.Element {
   return (
     <div className='tabs'>
       <section className='locations container'>
@@ -18,3 +18,5 @@ export default function Tabs(): JSX.Element {
     </div>
   );
 }
+
+export default memo(Tabs);

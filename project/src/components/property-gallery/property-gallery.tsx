@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import PropertyImage from '../property-image/property-image';
 
 type PropsType = {
@@ -6,7 +7,7 @@ type PropsType = {
 
 const MAX_PREVIEW_COUNT = 6;
 
-export default function PropertyGallery({images}: PropsType): JSX.Element {
+function PropertyGallery({images}: PropsType): JSX.Element {
   const previewCount: number = images.length < MAX_PREVIEW_COUNT ? images.length : MAX_PREVIEW_COUNT;
   const previewImages: string[] = images.slice(0, previewCount);
 
@@ -20,3 +21,5 @@ export default function PropertyGallery({images}: PropsType): JSX.Element {
     </div>
   );
 }
+
+export default memo(PropertyGallery);
