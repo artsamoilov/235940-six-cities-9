@@ -11,6 +11,7 @@ const initialState: OffersData = {
   currentOffer: {} as OfferType,
   nearbyOffers: [],
   comments: [],
+  favorites: [],
 };
 
 export const offersData = createSlice({
@@ -33,7 +34,17 @@ export const offersData = createSlice({
     loadComments: (state, action) => {
       state.comments = action.payload;
     },
+    loadFavorites: (state, action) => {
+      state.favorites = action.payload;
+    },
   },
 });
 
-export const {loadOffers, loadUserData, loadCurrentOffer, loadNearbyOffers, loadComments} = offersData.actions;
+export const {
+  loadOffers,
+  loadUserData,
+  loadCurrentOffer,
+  loadNearbyOffers,
+  loadComments,
+  loadFavorites,
+} = offersData.actions;
