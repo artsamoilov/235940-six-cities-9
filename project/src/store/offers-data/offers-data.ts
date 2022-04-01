@@ -37,6 +37,12 @@ export const offersData = createSlice({
     loadFavorites: (state, action) => {
       state.favorites = action.payload;
     },
+    setFavorite: (state, action) => {
+      const currentOffer = state.offers.find((offer) => offer.id === action.payload.id);
+      if (currentOffer) {
+        currentOffer.isFavorite = !currentOffer.isFavorite;
+      }
+    },
   },
 });
 
@@ -47,4 +53,5 @@ export const {
   loadNearbyOffers,
   loadComments,
   loadFavorites,
+  setFavorite,
 } = offersData.actions;

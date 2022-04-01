@@ -16,6 +16,7 @@ import {
   loadNearbyOffers,
   loadComments,
   loadFavorites,
+  setFavorite,
 } from './offers-data/offers-data';
 
 const Action = {
@@ -28,6 +29,7 @@ const Action = {
   FETCH_COMMENTS: 'FETCH_COMMENTS',
   POST_COMMENT: 'POST_COMMENT',
   FETCH_FAVORITES: 'FETCH_FAVORITES',
+  SET_FAVORITE: 'SET_FAVORITE',
 };
 
 export const fetchOffersAction = createAsyncThunk(
@@ -140,6 +142,19 @@ export const fetchFavoritesAction = createAsyncThunk(
     try {
       const {data} = await api.get<OfferType[]>(APIRoute.Favorite);
       store.dispatch(loadFavorites(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const setFavoriteAction = createAsyncThunk(
+  Action.SET_FAVORITE,
+  async ({offerId, status}: {offerId: number, status: number}) => {
+    try {
+      console.log(`${APIRoute.Favorite}/${offerId}/${status}`);
+      const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+      store.dispatch(setFavorite(data));
     } catch (error) {
       errorHandle(error);
     }
