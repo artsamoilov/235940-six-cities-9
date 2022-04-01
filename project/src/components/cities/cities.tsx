@@ -23,12 +23,12 @@ export default function Cities(): JSX.Element {
         <b className='places__found'>{currentCityOffers.length} places to stay in {cityName}</b>
         <Sorting />
         <div className='cities__places-list places__list tabs__content'>
-          <CardsList handleCardHover={handleCardHover} offers={offers}/>
+          <CardsList handleCardHover={handleCardHover} offers={offers} />
         </div>
       </section>
       <div className='cities__right-section'>
         <section className='cities__map map'>
-          <Map selectedOffer={selectedOffer} offers={offers}/>
+          <Map selectedOffer={selectedOffer} offers={offers} />
         </section>
       </div>
     </div>

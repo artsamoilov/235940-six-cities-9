@@ -1,4 +1,4 @@
-import {useCallback} from 'react';
+import {memo, useCallback} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import {sortOffers} from '../../utils';
@@ -9,7 +9,7 @@ type PropsType = {
   offers: OfferType[],
 }
 
-export default function CardsList({handleCardHover, offers}: PropsType): JSX.Element {
+function CardsList({handleCardHover, offers}: PropsType): JSX.Element {
   const {cityName, sortingType} = useAppSelector(({VIEW}) => VIEW);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
@@ -19,7 +19,9 @@ export default function CardsList({handleCardHover, offers}: PropsType): JSX.Ele
   return (
     <>
       {sortedCityOffers.map((offer: OfferType): JSX.Element =>
-        <Card key={offer.id} offer={offer} cardHoverHandler={cardHoverHandler}/>)}
+        <Card key={offer.id} offer={offer} cardHoverHandler={cardHoverHandler} />)}
     </>
   );
 }
+
+export default memo(CardsList);
