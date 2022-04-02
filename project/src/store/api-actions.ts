@@ -16,7 +16,8 @@ import {
   loadNearbyOffers,
   loadComments,
   loadFavorites,
-  setFavorite
+  changeFavorite,
+  setFavoritesLoadingNeeded
 } from './offers-data/offers-data';
 
 const Action = {
@@ -29,7 +30,8 @@ const Action = {
   FETCH_COMMENTS: 'FETCH_COMMENTS',
   POST_COMMENT: 'POST_COMMENT',
   FETCH_FAVORITES: 'FETCH_FAVORITES',
-  SET_FAVORITE: 'SET_FAVORITE',
+  CHANGE_FAVORITE: 'CHANGE_FAVORITE',
+  REMOVE_FAVORITE: 'REMOVE_FAVORITE',
 };
 
 export const fetchOffersAction = createAsyncThunk(
@@ -149,11 +151,24 @@ export const fetchFavoritesAction = createAsyncThunk(
 );
 
 export const setFavoriteAction = createAsyncThunk(
-  Action.SET_FAVORITE,
+  Action.CHANGE_FAVORITE,
   async ({offerId, status}: {offerId: number, status: number}) => {
     try {
       const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
-      store.dispatch(setFavorite(data));
+      store.dispatch(changeFavorite(data));
+      store.dispatch(setFavoritesLoadingNeeded());
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const removeFromFavoritesAction = createAsyncThunk(
+  Action.REMOVE_FAVORITE,
+  async ({offerId, status}: {offerId: number, status: number}) => {
+    try {
+      const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+      store.dispatch(changeFavorite(data));
     } catch (error) {
       errorHandle(error);
     }

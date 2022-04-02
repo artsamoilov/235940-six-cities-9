@@ -9,10 +9,13 @@ import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import Favorites from '../../components/favorites/favorites';
 
 export default function FavoritesPage(): JSX.Element {
-  const {isFavoritesLoaded, favorites} = useAppSelector(({DATA}) => DATA);
+  const {isFavoritesLoaded, isFavoritesUpdated, favorites} = useAppSelector(({DATA}) => DATA);
+
+  if (!isFavoritesUpdated) {
+    store.dispatch(fetchFavoritesAction());
+  }
 
   if (!isFavoritesLoaded) {
-    store.dispatch(fetchFavoritesAction());
     return <Spinner />;
   }
 

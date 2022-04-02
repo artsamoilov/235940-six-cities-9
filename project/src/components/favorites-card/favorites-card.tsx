@@ -2,7 +2,7 @@ import {getRatingPercent} from '../../utils';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {store} from '../../store';
-import {setFavoriteAction} from '../../store/api-actions';
+import {removeFromFavoritesAction} from '../../store/api-actions';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
@@ -27,7 +27,7 @@ export default function FavoritesCard({offer}: PropsType): JSX.Element {
           <button
             className='place-card__bookmark-button place-card__bookmark-button--active button'
             type='button'
-            onClick={() => store.dispatch(setFavoriteAction({offerId: offer.id, status: 0}))}
+            onClick={() => store.dispatch(removeFromFavoritesAction({offerId: offer.id, status: 0}))}
           >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark' />
