@@ -9,18 +9,29 @@ import {errorHandle} from '../services/error-handle';
 import {CommentType} from '../types/comment-type';
 import {redirectToRoute} from './action';
 import {requireAuthorization} from './user-process/user-process';
-import {loadOffers, loadUserData, loadCurrentOffer, loadNearbyOffers, loadComments} from './offers-data/offers-data';
+import {
+  loadOffers,
+  loadUserData,
+  loadCurrentOffer,
+  loadNearbyOffers,
+  loadComments,
+  loadFavorites,
+  changeFavorite,
+  setFavoritesLoadingNeeded
+} from './offers-data/offers-data';
 
 const Action = {
   FETCH_OFFERS: 'FETCH_OFFERS',
   CHECK_AUTH: 'CHECK_AUTH',
   LOGIN: 'LOGIN',
   LOGOUT: 'LOGOUT',
-  CLEAR_ERROR: 'CLEAR_ERROR',
   FETCH_CURRENT_OFFER: 'FETCH_CURRENT_OFFER',
   FETCH_NEARBY_OFFERS: 'FETCH_NEARBY_OFFERS',
   FETCH_COMMENTS: 'FETCH_COMMENTS',
   POST_COMMENT: 'POST_COMMENT',
+  FETCH_FAVORITES: 'FETCH_FAVORITES',
+  CHANGE_FAVORITE: 'CHANGE_FAVORITE',
+  REMOVE_FAVORITE: 'REMOVE_FAVORITE',
 };
 
 export const fetchOffersAction = createAsyncThunk(
@@ -121,6 +132,43 @@ export const postCommentAction = createAsyncThunk(
     try {
       const {data} = await api.post(`${APIRoute.Comments}/${offerId}`, {rating: rating, comment: comment});
       store.dispatch(loadComments(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavoritesAction = createAsyncThunk(
+  Action.FETCH_FAVORITES,
+  async () => {
+    try {
+      const {data} = await api.get<OfferType[]>(APIRoute.Favorite);
+      store.dispatch(loadFavorites(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const setFavoriteAction = createAsyncThunk(
+  Action.CHANGE_FAVORITE,
+  async ({offerId, status}: {offerId: number, status: number}) => {
+    try {
+      const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+      store.dispatch(changeFavorite(data));
+      store.dispatch(setFavoritesLoadingNeeded());
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const removeFromFavoritesAction = createAsyncThunk(
+  Action.REMOVE_FAVORITE,
+  async ({offerId, status}: {offerId: number, status: number}) => {
+    try {
+      const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+      store.dispatch(changeFavorite(data));
     } catch (error) {
       errorHandle(error);
     }

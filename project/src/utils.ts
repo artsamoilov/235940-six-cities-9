@@ -18,4 +18,3 @@ export const sortOffers = (offers: OfferType[], sortingType: string): OfferType[
 
 export const isAuthStatusUnknown = (authorizationStatus: AuthorizationStatus): boolean =>
   authorizationStatus === AuthorizationStatus.Unknown;
-

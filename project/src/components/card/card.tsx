@@ -1,7 +1,11 @@
-import {memo} from 'react';
-import {Link} from 'react-router-dom';
+import {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../utils';
+import {setFavoriteAction} from '../../store/api-actions';
+import {store} from '../../store';
+import {useAppSelector} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
@@ -9,7 +13,21 @@ type PropsType = {
   cardHoverHandler: (id: number) => void,
 }
 
-function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
+export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
+  const [favoriteStatus, setFavoriteStatus] = useState(offer.isFavorite);
+  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
+
+  const navigate = useNavigate();
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      setFavoriteStatus(!favoriteStatus);
+      store.dispatch(setFavoriteAction({offerId: offer.id, status: Number(!favoriteStatus)}));
+    } else {
+      navigate(AppRoute.SignIn);
+    }
+  };
+
   return (
     <article className='cities__place-card place-card' onMouseOver={() => cardHoverHandler(offer.id)} onMouseLeave={() => cardHoverHandler(-1)}>
       {offer.isPremium && <CardPremiumMark />}
@@ -24,7 +42,11 @@ function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
             <b className='place-card__price-value'>&euro;{offer.price}&nbsp;</b>
             <span className='place-card__price-text'>&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite && 'place-card__bookmark-button--active'} button`} type='button'>
+          <button
+            className={`place-card__bookmark-button ${favoriteStatus && 'place-card__bookmark-button--active'} button`}
+            type='button'
+            onClick={handleFavoriteClick}
+          >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark' />
             </svg>
@@ -45,5 +67,3 @@ function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
     </article>
   );
 }
-
-export default memo(Card);

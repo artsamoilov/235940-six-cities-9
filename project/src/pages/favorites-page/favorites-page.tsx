@@ -1,52 +1,32 @@
-import {Link} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
+import {store} from '../../store';
+import {fetchFavoritesAction} from '../../store/api-actions';
 import Navigation from '../../components/navigation/navigation';
-import FavoritesCard from '../../components/favorites-card/favorites-card';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Spinner from '../../components/spinner/spinner';
+import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
+import Favorites from '../../components/favorites/favorites';
 
 export default function FavoritesPage(): JSX.Element {
+  const {isFavoritesLoaded, isFavoritesUpdated, favorites} = useAppSelector(({DATA}) => DATA);
+
+  if (!isFavoritesUpdated) {
+    store.dispatch(fetchFavoritesAction());
+  }
+
+  if (!isFavoritesLoaded) {
+    return <Spinner />;
+  }
+
+  const isFavoritesEmpty = (): string => favorites.length === 0 ? 'page--favorites-empty' : '';
+
   return (
-    <div className='page'>
+    <div className={`page ${isFavoritesEmpty()}`}>
       <Header>
         <Navigation />
       </Header>
-
-      <main className='page__main page__main--favorites'>
-        <div className='page__favorites-container container'>
-          <section className='favorites'>
-            <h1 className='favorites__title'>Saved listing</h1>
-            <ul className='favorites__list'>
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <Link to='#' className='locations__item-link'>
-                      <span>Amsterdam</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className='favorites__places'>
-                  <FavoritesCard />
-                  <FavoritesCard />
-                </div>
-              </li>
-
-              <li className='favorites__locations-items'>
-                <div className='favorites__locations locations locations--current'>
-                  <div className='locations__item'>
-                    <Link to='#' className='locations__item-link'>
-                      <span>Cologne</span>
-                    </Link>
-                  </div>
-                </div>
-                <div className='favorites__places'>
-                  <FavoritesCard />
-                </div>
-              </li>
-            </ul>
-          </section>
-        </div>
-      </main>
-
+      {isFavoritesEmpty() ? <FavoritesEmpty /> : <Favorites />}
       <Footer />
     </div>
   );

@@ -15,6 +15,9 @@ export type OffersData = {
   currentOffer: OfferType,
   nearbyOffers: OfferType[],
   comments: CommentType[],
+  isFavoritesLoaded: boolean,
+  isFavoritesUpdated: boolean,
+  favorites: OfferType[],
 };
 
 export type ViewProcess = {
