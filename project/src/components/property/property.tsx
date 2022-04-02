@@ -1,7 +1,10 @@
+import {memo, useState} from 'react';
 import {getRatingPercent} from '../../utils';
-import {AuthorizationStatus} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {memo} from 'react';
+import {store} from '../../store';
+import {setFavoriteAction} from '../../store/api-actions';
+import {useNavigate} from 'react-router-dom';
 import PropertyPremiumMark from '../property-premium-mark/property-premium-mark';
 import ReviewsList from '../reviews-list/reviews-list';
 import CommentForm from '../comment-form/comment-form';
@@ -10,13 +13,30 @@ function Property(): JSX.Element {
   const currentOffer = useAppSelector(({DATA}) => DATA.currentOffer);
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
+  const [favoriteStatus, setFavoriteStatus] = useState(currentOffer.isFavorite);
+
+  const navigate = useNavigate();
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      setFavoriteStatus(!favoriteStatus);
+      store.dispatch(setFavoriteAction({offerId: currentOffer.id, status: Number(!favoriteStatus)}));
+    } else {
+      navigate(AppRoute.SignIn);
+    }
+  };
+
   return (
     <div className='property__container container'>
       <div className='property__wrapper'>
         {currentOffer.isPremium && <PropertyPremiumMark />}
         <div className='property__name-wrapper'>
           <h1 className='property__name'>{currentOffer.title}</h1>
-          <button className={`property__bookmark-button ${currentOffer.isFavorite && 'property__bookmark-button--active'} button`} type='button'>
+          <button
+            className={`property__bookmark-button ${favoriteStatus && 'property__bookmark-button--active'} button`}
+            type='button'
+            onClick={handleFavoriteClick}
+          >
             <svg className='property__bookmark-icon' width='31' height='33'>
               <use xlinkHref='#icon-bookmark' />
             </svg>

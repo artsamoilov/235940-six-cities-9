@@ -1,8 +1,8 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../utils';
-import {fetchOffersAction, setFavoriteAction} from '../../store/api-actions';
+import {setFavoriteAction} from '../../store/api-actions';
 import {store} from '../../store';
 import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
