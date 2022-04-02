@@ -16,7 +16,7 @@ import {
   loadNearbyOffers,
   loadComments,
   loadFavorites,
-  setFavorite,
+  setFavorite
 } from './offers-data/offers-data';
 
 const Action = {
