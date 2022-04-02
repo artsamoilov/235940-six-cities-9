@@ -152,7 +152,6 @@ export const setFavoriteAction = createAsyncThunk(
   Action.SET_FAVORITE,
   async ({offerId, status}: {offerId: number, status: number}) => {
     try {
-      console.log(`${APIRoute.Favorite}/${offerId}/${status}`);
       const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
       store.dispatch(setFavorite(data));
     } catch (error) {

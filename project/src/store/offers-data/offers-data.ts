@@ -11,6 +11,7 @@ const initialState: OffersData = {
   currentOffer: {} as OfferType,
   nearbyOffers: [],
   comments: [],
+  isFavoritesLoaded: false,
   favorites: [],
 };
 
@@ -36,12 +37,14 @@ export const offersData = createSlice({
     },
     loadFavorites: (state, action) => {
       state.favorites = action.payload;
+      state.isFavoritesLoaded = true;
     },
     setFavorite: (state, action) => {
       const currentOffer = state.offers.find((offer) => offer.id === action.payload.id);
       if (currentOffer) {
         currentOffer.isFavorite = !currentOffer.isFavorite;
       }
+      state.isFavoritesLoaded = false;
     },
   },
 });

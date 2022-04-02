@@ -15,6 +15,7 @@ export type OffersData = {
   currentOffer: OfferType,
   nearbyOffers: OfferType[],
   comments: CommentType[],
+  isFavoritesLoaded: boolean,
   favorites: OfferType[],
 };
 
