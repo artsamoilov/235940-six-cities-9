@@ -3,7 +3,7 @@ import {CityName, SortingOption} from '../../const';
 
 describe('Reducer: viewProcess', () => {
   it('should return initial state without parameters', () => {
-    expect(viewProcess.reducer(void 0, {type: 'UNKNOWN_ACTION'}))
+    expect(viewProcess.reducer(undefined, {type: 'UNKNOWN_ACTION'}))
       .toEqual({cityName: CityName.Paris, sortingType: SortingOption.Popular});
   });
 
