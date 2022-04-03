@@ -1,7 +1,7 @@
 import {Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {useAppSelector} from '../../hooks';
-import {isAuthStatusUnknown} from '../../utils';
+import {isAuthStatusUnknown} from '../../common';
 import {browserHistory} from '../../browser-history';
 import MainPage from '../../pages/main-page/main-page';
 import PropertyPage from '../../pages/property-page/property-page';

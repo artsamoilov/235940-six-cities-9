@@ -1,7 +1,7 @@
 import {memo, useCallback} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
-import {sortOffers} from '../../utils';
+import {sortOffers} from '../../common';
 import Card from '../card/card';
 
 type PropsType = {

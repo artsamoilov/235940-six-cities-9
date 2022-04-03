@@ -1,4 +1,4 @@
-import {getRatingPercent} from '../../utils';
+import {getRatingPercent} from '../../common';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {store} from '../../store';
