@@ -3,22 +3,21 @@ import {createMemoryHistory} from 'history';
 import {makeFakeOffer} from '../../utils/mocks';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {Provider} from 'react-redux';
-import {AuthorizationStatus} from '../../const';
 import HistoryRouter from '../../components/history-route/history-route';
-import Card from './card';
+import FavoritesCard from './favorites-card';
 
 const mockStore = configureMockStore();
-const store = mockStore({USER: {authorizationStatus: AuthorizationStatus.Auth}});
+const store = mockStore();
 const fakeOffer = makeFakeOffer();
 
-describe('Component: Card', () => {
+describe('Component: FavoritesCard', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <Card cardHoverHandler={() => {}} offer={fakeOffer}/>
+          <FavoritesCard offer={fakeOffer}/>
         </HistoryRouter>
       </Provider>
     );
