@@ -1,15 +1,15 @@
 import {render, screen} from '@testing-library/react';
 import {createMemoryHistory} from 'history';
 import HistoryRouter from '../../components/history-route/history-route';
-import PropertyGallery from './property-gallery';
+import PropertyImage from './property-image';
 
-describe('Component: PropertyGallery', () => {
+describe('Component: PropertyImage', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 
     render(
       <HistoryRouter history={history}>
-        <PropertyGallery images={['/img/photo.jpg']} />
+        <PropertyImage source={'/img/photo.jpg'} />
       </HistoryRouter>
     );
 
