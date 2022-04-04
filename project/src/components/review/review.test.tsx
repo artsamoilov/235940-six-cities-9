@@ -21,4 +21,3 @@ describe('Component: Review', () => {
     expect(screen.getByAltText(/Reviews avatar/i)).toBeInTheDocument();
   });
 });
-

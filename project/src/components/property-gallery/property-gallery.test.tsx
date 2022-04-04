@@ -16,4 +16,3 @@ describe('Component: PropertyGallery', () => {
     expect(screen.getByAltText(/Property/i)).toBeInTheDocument();
   });
 });
-

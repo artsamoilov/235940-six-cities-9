@@ -35,4 +35,3 @@ describe('Component: Property', () => {
     expect(screen.getByText(new RegExp(`${fakeOffer.description}`, 'i'))).toBeInTheDocument();
   });
 });
-

@@ -16,4 +16,3 @@ describe('Component: Logo', () => {
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
   });
 });
-

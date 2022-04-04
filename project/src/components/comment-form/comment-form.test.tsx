@@ -20,4 +20,3 @@ describe('Component: CommentForm', () => {
     expect(screen.getByText(/50 characters/i)).toBeInTheDocument();
   });
 });
-

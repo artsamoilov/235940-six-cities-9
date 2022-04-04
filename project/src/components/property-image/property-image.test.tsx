@@ -16,4 +16,3 @@ describe('Component: PropertyImage', () => {
     expect(screen.getByAltText(/Property/i)).toBeInTheDocument();
   });
 });
-
