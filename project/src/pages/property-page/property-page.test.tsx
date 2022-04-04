@@ -47,6 +47,9 @@ describe('Component: PropertyPage', () => {
   it('should render correctly', () => {
     render(fakeApp);
 
+    expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
+    expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
     expect(screen.getByText(/Other places in the neighbourhood/i)).toBeInTheDocument();
   });
 });
