@@ -8,7 +8,7 @@ import LoginPage from './login-page';
 const mockStore = configureMockStore();
 const store = mockStore();
 
-describe('Component: NotFoundPage', () => {
+describe('Component: LoginPage', () => {
   it('should render correctly', () => {
     const history = createMemoryHistory();
 

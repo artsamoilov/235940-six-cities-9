@@ -92,7 +92,7 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText('404 Not Found')).toBeInTheDocument();
-    expect(screen.getByText('Return to main page')).toBeInTheDocument();
+    expect(screen.getByText(/404 Not Found/i)).toBeInTheDocument();
+    expect(screen.getByText(/Return to main page/i)).toBeInTheDocument();
   });
 });
