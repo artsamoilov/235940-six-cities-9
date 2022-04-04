@@ -13,25 +13,9 @@ const fakeOffers = makeFakeOffersList();
 const fakeUserData = makeFakeUserData();
 const fakeComments = makeFakeCommentsList();
 
-const store = mockStore({
-  USER: {authorizationStatus: AuthorizationStatus.Auth},
-  VIEW: {cityName: CityName.Paris, sortingType: SortingOption.Popular},
-  DATA: {
-    isDataLoaded: true,
-    offers: fakeOffers,
-    userData: fakeUserData,
-    currentOffer: fakeOffers[0],
-    nearbyOffers: fakeOffers,
-    comments: fakeComments,
-    isFavoritesLoaded: true,
-    isFavoritesUpdated: true,
-    favorites: fakeOffers,
-  },
-});
-
 const history = createMemoryHistory();
 
-describe('Component: PropertyPage', () => {
+describe('Component: FavoritesPage', () => {
   beforeEach(() => {
     history.push(AppRoute.Favorites);
   });
