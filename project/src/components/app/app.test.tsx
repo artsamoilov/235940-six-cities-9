@@ -3,9 +3,9 @@ import {createMemoryHistory} from 'history';
 import {Provider} from 'react-redux';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {AuthorizationStatus, AppRoute, CityName, SortingOption} from '../../const';
+import {makeFakeCommentsList, makeFakeOffersList, makeFakeUserData} from '../../utils/mocks';
 import HistoryRouter from '../history-route/history-route';
 import App from './app';
-import {makeFakeCommentsList, makeFakeOffersList, makeFakeUserData} from "../../utils/mocks";
 
 const mockStore = configureMockStore();
 

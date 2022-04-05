@@ -18,7 +18,7 @@ describe('Component: Tab', () => {
         <HistoryRouter history={history}>
           <Tab cityName={CityName.Amsterdam} />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`${CityName.Amsterdam}`, 'i'))).toBeInTheDocument();

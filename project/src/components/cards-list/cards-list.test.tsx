@@ -21,9 +21,9 @@ describe('Component: CardsList', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <CardsList handleCardHover={() => {}} offers={[fakeOffer]}/>
+          <CardsList handleCardHover={jest.fn()} offers={[fakeOffer]}/>
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(fakeOffer.title)).toBeInTheDocument();

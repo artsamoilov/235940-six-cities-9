@@ -16,9 +16,9 @@ describe('Component: SortingItem', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <SortingItem sortingType={SortingOption.Popular} sortingChangeHandler={() => {}} />
+          <SortingItem sortingType={SortingOption.Popular} sortingChangeHandler={jest.fn()} />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`${SortingOption.Popular}`, 'i'))).toBeInTheDocument();

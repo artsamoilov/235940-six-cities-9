@@ -20,7 +20,7 @@ describe('Function: sortOffers', () => {
     makeFakeOffer(LOW_PRICE, MID_RATING),
     makeFakeOffer(HIGH_PRICE, LOW_RATING),
     makeFakeOffer(MID_PRICE, HIGH_RATING),
-  ]
+  ];
 
   it('should return original array when Popular sorting option selected.', () => {
     expect(sortOffers(offers, SortingOption.Popular)).toBe(offers);

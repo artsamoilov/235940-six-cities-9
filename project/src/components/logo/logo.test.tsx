@@ -10,7 +10,7 @@ describe('Component: Logo', () => {
     render(
       <HistoryRouter history={history}>
         <Logo />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();

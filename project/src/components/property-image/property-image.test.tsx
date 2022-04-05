@@ -10,7 +10,7 @@ describe('Component: PropertyImage', () => {
     render(
       <HistoryRouter history={history}>
         <PropertyImage source={'/img/photo.jpg'} />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByAltText(/Property/i)).toBeInTheDocument();

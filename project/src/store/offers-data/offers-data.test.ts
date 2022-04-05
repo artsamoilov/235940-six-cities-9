@@ -1,6 +1,6 @@
 import {UserData} from '../../types/user-data';
 import {OfferType} from '../../types/offer-type';
-import {makeFakeCommentsList, makeFakeOffer, makeFakeOffersList, makeFakeUserData} from '../../utils/mocks';
+import {makeFakeCommentsList, makeFakeOffersList, makeFakeUserData} from '../../utils/mocks';
 import {
   offersData,
   loadOffers,
@@ -16,7 +16,6 @@ import {
 const fakeOffers = makeFakeOffersList();
 const fakeUserData = makeFakeUserData();
 const fakeComments = makeFakeCommentsList();
-const fakeOffer = makeFakeOffer(100, 5, false);
 
 describe('Reducer: offersData', () => {
   it('should return initial state without parameters', () => {

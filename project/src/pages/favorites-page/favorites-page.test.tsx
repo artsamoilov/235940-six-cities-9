@@ -42,14 +42,14 @@ describe('Component: FavoritesPage', () => {
         <HistoryRouter history={history}>
           <App />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
     expect(screen.queryByText(/Nothing yet saved./i)).not.toBeInTheDocument();
   });
 
-  it('should render correctly when favorites exist', () => {
+  it('should render correctly when favorites not exist', () => {
     const store = mockStore({
       USER: {authorizationStatus: AuthorizationStatus.Auth},
       VIEW: {cityName: CityName.Paris, sortingType: SortingOption.Popular},
@@ -71,7 +71,7 @@ describe('Component: FavoritesPage', () => {
         <HistoryRouter history={history}>
           <App />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.queryByText(/Saved listing/i)).not.toBeInTheDocument();

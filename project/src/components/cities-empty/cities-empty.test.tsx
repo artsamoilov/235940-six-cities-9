@@ -19,7 +19,7 @@ describe('Component: CitiesEmpty', () => {
         <HistoryRouter history={history}>
           <CitiesEmpty />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(/No places to stay available/i)).toBeInTheDocument();

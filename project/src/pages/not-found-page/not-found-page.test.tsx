@@ -10,7 +10,7 @@ describe('Component: NotFoundPage', () => {
     render(
       <HistoryRouter history={history}>
         <NotFoundPage />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByText('404 Not Found')).toBeInTheDocument();

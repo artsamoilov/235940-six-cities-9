@@ -24,7 +24,7 @@ describe('Component: Cities', () => {
         <HistoryRouter history={history}>
           <Cities />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`1 places to stay in ${fakeOffer.city.name}`, 'i'))).toBeInTheDocument();

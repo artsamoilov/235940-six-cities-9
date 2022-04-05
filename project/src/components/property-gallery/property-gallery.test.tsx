@@ -10,7 +10,7 @@ describe('Component: PropertyGallery', () => {
     render(
       <HistoryRouter history={history}>
         <PropertyGallery images={['/img/photo.jpg']} />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByAltText(/Property/i)).toBeInTheDocument();

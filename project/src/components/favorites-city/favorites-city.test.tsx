@@ -19,7 +19,7 @@ describe('Component: FavoritesCity', () => {
         <HistoryRouter history={history}>
           <FavoritesCity cityName={fakeOffer.city.name} />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`${fakeOffer.city.name}`, 'i'))).toBeInTheDocument();

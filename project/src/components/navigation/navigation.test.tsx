@@ -25,8 +25,8 @@ describe('Component: Navigation', () => {
         <HistoryRouter history={history}>
           <Navigation />
         </HistoryRouter>
-      </Provider>
-  );
+      </Provider>,
+    );
 
     expect(screen.getByText(new RegExp(`${fakeUserData.email}`, 'i'))).toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('Component: Navigation', () => {
         <HistoryRouter history={history}>
           <Navigation />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.queryByText(new RegExp(`${fakeUserData.email}`, 'i'))).not.toBeInTheDocument();

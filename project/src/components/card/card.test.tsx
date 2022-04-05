@@ -18,9 +18,9 @@ describe('Component: Card', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <Card cardHoverHandler={() => {}} offer={fakeOffer}/>
+          <Card cardHoverHandler={jest.fn()} offer={fakeOffer}/>
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`${fakeOffer.price}`, 'i'))).toBeInTheDocument();

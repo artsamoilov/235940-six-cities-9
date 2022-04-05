@@ -17,7 +17,7 @@ describe('Component: LoginPage', () => {
         <HistoryRouter history={history}>
           <LoginPage />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText('E-mail')).toBeInTheDocument();

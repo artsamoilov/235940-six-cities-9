@@ -6,7 +6,7 @@ import {CommentType} from '../types/comment-type';
 
 const DEFAULT_LENGTH = 3;
 
-export const makeFakeOffer = (price: number = 100, rating: number = 3.5, isFavorite: boolean = false): OfferType => ({
+export const makeFakeOffer = (price = 100, rating = 3.5, isFavorite = false): OfferType => ({
   bedrooms: datatype.number(10),
   city: {
     location: {

@@ -23,7 +23,7 @@ describe('Component: Property', () => {
         <HistoryRouter history={history}>
           <Property />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();

@@ -10,7 +10,7 @@ describe('Component: CommentForm', () => {
     render(
       <HistoryRouter history={history}>
         <CommentForm />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByText(/Your review/i)).toBeInTheDocument();

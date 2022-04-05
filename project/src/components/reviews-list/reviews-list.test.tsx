@@ -19,7 +19,7 @@ describe('Component: ReviewsList', () => {
         <HistoryRouter history={history}>
           <ReviewsList />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByText(new RegExp(`${fakeComment.user.name}`, 'i'))).toBeInTheDocument();

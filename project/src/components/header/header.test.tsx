@@ -12,7 +12,7 @@ describe('Component: Header', () => {
         <Header>
           <p>Test</p>
         </Header>
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByText(/Test/i)).toBeInTheDocument();

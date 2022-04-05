@@ -10,7 +10,7 @@ describe('Component: Footer', () => {
     render(
       <HistoryRouter history={history}>
         <Footer />
-      </HistoryRouter>
+      </HistoryRouter>,
     );
 
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
