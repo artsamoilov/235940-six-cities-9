@@ -37,7 +37,7 @@ export const makeFakeOffer = (price = 100, rating = 3.5, isFavorite = false): Of
   previewImage: image.imageUrl(),
   price: price,
   rating: rating,
-  title: lorem.text(),
+  title: lorem.sentence(5),
   type: lorem.word(),
 });
 
