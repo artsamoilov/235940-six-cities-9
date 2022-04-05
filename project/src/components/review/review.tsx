@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import {getRatingPercent} from '../../utils';
+import {getRatingPercent} from '../../common';
 import {CommentType} from '../../types/comment-type';
 
 export default function Review({comment, date, rating, user}: CommentType): JSX.Element {

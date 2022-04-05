@@ -1,5 +1,5 @@
 import {memo, useState} from 'react';
-import {getRatingPercent} from '../../utils';
+import {getRatingPercent} from '../../common';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';

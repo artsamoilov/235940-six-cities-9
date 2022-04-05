@@ -5,7 +5,7 @@ import {logoutAction} from '../../store/api-actions';
 import {memo} from 'react';
 
 function Navigation(): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
   const userData = useAppSelector(({DATA}) => DATA.userData);
   const dispatch = useAppDispatch();
 
