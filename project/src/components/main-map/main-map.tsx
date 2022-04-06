@@ -2,9 +2,9 @@ import {useRef, useEffect} from 'react';
 import leaflet, {Icon, Marker} from 'leaflet';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
+import {PARIS, Cities} from '../../const';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map/use-map';
-import {PARIS, Cities} from '../../mocks/cities';
 
 type PropsType = {
   selectedOffer: OfferType | undefined,
