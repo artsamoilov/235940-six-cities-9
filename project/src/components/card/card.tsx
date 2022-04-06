@@ -10,7 +10,7 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  cardHoverHandler: (id: number) => void,
+  cardHoverHandler?: (id: number) => void,
 }
 
 export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
@@ -28,8 +28,12 @@ export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element 
     }
   };
 
+  const handleMouseOver = () => cardHoverHandler ? cardHoverHandler(offer.id) : undefined;
+
+  const handleMouseLeave = () => cardHoverHandler ? cardHoverHandler(-1) : undefined;
+
   return (
-    <article className='cities__place-card place-card' onMouseOver={() => cardHoverHandler(offer.id)} onMouseLeave={() => cardHoverHandler(-1)}>
+    <article className='cities__place-card place-card' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${offer.id}`}>

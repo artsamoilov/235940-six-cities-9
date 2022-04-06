@@ -9,6 +9,7 @@ import {PARIS, Cities} from '../../mocks/cities';
 type PropsType = {
   selectedOffer: OfferType | undefined,
   offers: OfferType[],
+  isInteractive?: boolean,
 }
 
 const defaultIcon = new Icon({
@@ -23,18 +24,18 @@ const activeIcon = new Icon({
   iconAnchor: [13, 39],
 });
 
-export default function Map({selectedOffer, offers}: PropsType): JSX.Element {
+export default function MainMap({selectedOffer, offers, isInteractive = true}: PropsType): JSX.Element {
   const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
-  const getCityLocation = (currentCityName: string) => {
+  const getCurrentCity = (currentCityName: string) => {
     const city = Cities.find(({name}) => name === currentCityName);
-    return city ? city.location : PARIS.location;
+    return city ? city : PARIS;
   };
 
-  const location = getCityLocation(cityName);
+  const currentCity = getCurrentCity(cityName);
   const mapRef = useRef(null);
-  const map = useMap(mapRef, location);
+  const map = useMap(mapRef, currentCity);
   const markerGroup = leaflet.layerGroup();
 
   useEffect(() => {
@@ -44,10 +45,18 @@ export default function Map({selectedOffer, offers}: PropsType): JSX.Element {
           lat: offer.location.latitude,
           lng: offer.location.longitude,
         });
-
         marker.setIcon(selectedOffer && selectedOffer.id === offer.id ? activeIcon : defaultIcon).addTo(markerGroup);
-        markerGroup.addTo(map);
       });
+
+      if (!isInteractive && selectedOffer) {
+        const currentMarker = new Marker({
+          lat: selectedOffer.location.latitude,
+          lng: selectedOffer.location.longitude,
+        });
+        currentMarker.setIcon(activeIcon).addTo(markerGroup);
+      }
+
+      markerGroup.addTo(map);
     }
     return () => {
       markerGroup.clearLayers();

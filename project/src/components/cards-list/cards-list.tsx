@@ -5,7 +5,7 @@ import {sortOffers} from '../../common';
 import Card from '../card/card';
 
 type PropsType = {
-  handleCardHover: (id: number) => void,
+  handleCardHover?: (id: number) => void,
   offers: OfferType[],
 }
 
@@ -14,7 +14,7 @@ function CardsList({handleCardHover, offers}: PropsType): JSX.Element {
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 
-  const cardHoverHandler = useCallback((id: number) => handleCardHover(id), [handleCardHover]);
+  const cardHoverHandler = handleCardHover ? useCallback((id: number) => handleCardHover(id), [handleCardHover]) : undefined;
 
   return (
     <>

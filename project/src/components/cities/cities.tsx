@@ -3,7 +3,7 @@ import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import Sorting from '../sorting/sorting';
 import CardsList from '../cards-list/cards-list';
-import Map from '../map/map';
+import MainMap from '../main-map/main-map';
 
 export default function Cities(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
@@ -28,7 +28,7 @@ export default function Cities(): JSX.Element {
       </section>
       <div className='cities__right-section'>
         <section className='cities__map map'>
-          <Map selectedOffer={selectedOffer} offers={offers} />
+          <MainMap selectedOffer={selectedOffer} offers={offers} />
         </section>
       </div>
     </div>
