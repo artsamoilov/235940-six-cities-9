@@ -18,7 +18,8 @@ import {
   loadComments,
   loadFavorites,
   changeFavorite,
-  setFavoritesLoadingNeeded
+  setFavoritesLoadingNeeded,
+  setCommentSending, setCommentSent
 } from './offers-data/offers-data';
 
 const Action = {
@@ -176,10 +177,12 @@ export const postCommentAction = createAsyncThunk<void,
     Action.POST_COMMENT,
     async ({offerId, rating, comment}, {dispatch, extra: api}) => {
       try {
+        dispatch(setCommentSending());
         const {data} = await api.post(`${APIRoute.Comments}/${offerId}`, {rating: rating, comment: comment});
         dispatch(loadComments(data));
       } catch (error) {
         errorHandle(error);
+        dispatch(setCommentSent());
       }
     },
   );

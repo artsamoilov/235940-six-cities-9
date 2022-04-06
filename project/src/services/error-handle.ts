@@ -20,6 +20,8 @@ export const errorHandle = (error: unknown): void => {
       case HTTPCode.NotFound:
         toast.error(response.data.error);
         break;
+      default:
+        toast.error(response.data.error);
     }
   }
 };

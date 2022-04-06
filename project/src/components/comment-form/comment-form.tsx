@@ -2,6 +2,7 @@ import {FormEvent, memo, useState} from 'react';
 import {postCommentAction} from '../../store/api-actions';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
 
 type PropsType = {
   target: {
@@ -10,7 +11,13 @@ type PropsType = {
   }
 }
 
+const enum TextLimit {
+  Minimum = 50,
+  Maximum = 300,
+}
+
 function CommentForm(): JSX.Element {
+  const isCommentSent = useAppSelector(({DATA}) => DATA.isCommentSent);
   const offerId = useParams().id;
   const [formData, setFormData] = useState({
     rating: '',
@@ -22,7 +29,7 @@ function CommentForm(): JSX.Element {
     setFormData({...formData, [name]: value});
   };
 
-  const isButtonDisabled = (): boolean => formData.rating === '' || formData.review.length < 50;
+  const isButtonDisabled = (): boolean => !formData.rating || formData.review.length < TextLimit.Minimum || formData.review.length > TextLimit.Maximum;
 
   const handleFormSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
@@ -32,6 +39,7 @@ function CommentForm(): JSX.Element {
   };
 
   return (
+    <fieldset style={{border: 'none', padding: '0', margin: '0'}} disabled={!isCommentSent}>
     <form onSubmit={handleFormSubmit} className='reviews__form form' action='' method='post'>
       <label className='reviews__label form__label' htmlFor='review'>Your review</label>
       <div className='reviews__rating-form form__rating'>
@@ -79,6 +87,7 @@ function CommentForm(): JSX.Element {
         <button className='reviews__submit form__submit button' type='submit' disabled={isButtonDisabled()}>Submit</button>
       </div>
     </form>
+    </fieldset>
   );
 }
 
