@@ -13,6 +13,8 @@ type PropsType = {
   cardHoverHandler?: (id: number) => void,
 }
 
+const EMPTY_ID = -1;
+
 export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
   const [favoriteStatus, setFavoriteStatus] = useState(offer.isFavorite);
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
@@ -30,7 +32,7 @@ export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element 
 
   const handleMouseOver = () => cardHoverHandler ? cardHoverHandler(offer.id) : undefined;
 
-  const handleMouseLeave = () => cardHoverHandler ? cardHoverHandler(-1) : undefined;
+  const handleMouseLeave = () => cardHoverHandler ? cardHoverHandler(EMPTY_ID) : undefined;
 
   return (
     <article className='cities__place-card place-card' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>

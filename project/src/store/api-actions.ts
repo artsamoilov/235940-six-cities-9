@@ -22,17 +22,17 @@ import {
 } from './offers-data/offers-data';
 
 const Action = {
-  FETCH_OFFERS: 'FETCH_OFFERS',
-  CHECK_AUTH: 'CHECK_AUTH',
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  FETCH_CURRENT_OFFER: 'FETCH_CURRENT_OFFER',
-  FETCH_NEARBY_OFFERS: 'FETCH_NEARBY_OFFERS',
-  FETCH_COMMENTS: 'FETCH_COMMENTS',
-  POST_COMMENT: 'POST_COMMENT',
-  FETCH_FAVORITES: 'FETCH_FAVORITES',
-  CHANGE_FAVORITE: 'CHANGE_FAVORITE',
-  REMOVE_FAVORITE: 'REMOVE_FAVORITE',
+  FETCH_OFFERS: 'fetchOffers',
+  CHECK_AUTH: 'checkAuth',
+  LOGIN: 'LogIn',
+  LOGOUT: 'LogOut',
+  FETCH_CURRENT_OFFER: 'fetchCurrentOffer',
+  FETCH_NEARBY_OFFERS: 'fetchNearbyOffers',
+  FETCH_COMMENTS: 'fetchComments',
+  POST_COMMENT: 'postComment',
+  FETCH_FAVORITES: 'fetchFavorites',
+  CHANGE_FAVORITE: 'changeFavorite',
+  REMOVE_FAVORITE: 'removeFavorite',
 };
 
 export const fetchOffersAction = createAsyncThunk<void, undefined,
