@@ -15,7 +15,7 @@ function ReviewsList(): JSX.Element {
     const date1InNumber = new Date(comment1.date).getTime();
     const date2InNumber = new Date(comment2.date).getTime();
     return date2InNumber - date1InNumber;
-  }
+  };
 
   const sortedComments = comments.slice().sort((comment1, comment2) => sortCommentsNewFirst(comment1, comment2));
 

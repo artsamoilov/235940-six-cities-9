@@ -79,7 +79,7 @@ describe('Application Routing', () => {
         <HistoryRouter history={history}>
           <App />
         </HistoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     expect(screen.getByPlaceholderText(/Email/i)).toBeInTheDocument();

@@ -14,12 +14,21 @@ function CardsList({onCardHover, offers}: PropsType): JSX.Element {
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
   const sortedCityOffers = sortOffers(currentCityOffers, sortingType);
 
-  const onCurrentCardHover = onCardHover ? useCallback((id: number) => onCardHover(id), [onCardHover]) : undefined;
+  if (onCardHover) {
+    const onCurrentCardHover = useCallback((id: number) => onCardHover(id), [onCardHover]);
+
+    return (
+      <>
+        {sortedCityOffers.map((offer: OfferType): JSX.Element =>
+          <Card key={offer.id} offer={offer} onCurrentCardHover={onCurrentCardHover} />)}
+      </>
+    );
+  }
 
   return (
     <>
       {sortedCityOffers.map((offer: OfferType): JSX.Element =>
-        <Card key={offer.id} offer={offer} onCurrentCardHover={onCurrentCardHover} />)}
+        <Card key={offer.id} offer={offer} onCurrentCardHover={undefined} />)}
     </>
   );
 }

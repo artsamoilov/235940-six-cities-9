@@ -61,7 +61,7 @@ export default function MainMap({selectedOffer, offers, isInteractive = true}: P
     return () => {
       markerGroup.clearLayers();
     };
-  }, [map, markerGroup, offers, selectedOffer, currentCityOffers]);
+  }, [map, markerGroup, offers, selectedOffer, currentCityOffers, isInteractive]);
 
   return <div style={{height: '100%'}} ref={mapRef} />;
 }

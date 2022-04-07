@@ -14,15 +14,15 @@ const passwordRegExp = new RegExp(/(?=.*?[0-9])(?=.*?[A-Za-z]).+/);
 export default function LoginPage(): JSX.Element {
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />;
-  }
-
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main} />;
+  }
 
   const isEmailValid = () => emailRef.current && emailRegExp.test(emailRef.current.value);
   const isPasswordValid = () => passwordRef.current && passwordRegExp.test(passwordRef.current.value);
