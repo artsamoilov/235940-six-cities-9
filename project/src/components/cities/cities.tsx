@@ -11,7 +11,7 @@ export default function Cities(): JSX.Element {
   const offers = useAppSelector(({DATA}) => DATA.offers);
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
-  const handleCardHover = useCallback((id: number) => {
+  const onCardHover = useCallback((id: number) => {
     const currentOffer = offers.find((offer) => offer.id === id);
     setSelectedOffer(currentOffer);
   }, [offers]);
@@ -23,7 +23,7 @@ export default function Cities(): JSX.Element {
         <b className='places__found'>{currentCityOffers.length} places to stay in {cityName}</b>
         <Sorting />
         <div className='cities__places-list places__list tabs__content'>
-          <CardsList handleCardHover={handleCardHover} offers={offers} />
+          <CardsList onCardHover={onCardHover} offers={offers} />
         </div>
       </section>
       <div className='cities__right-section'>

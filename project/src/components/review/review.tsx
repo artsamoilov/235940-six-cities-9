@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 import {getRatingPercent} from '../../common';
 import {CommentType} from '../../types/comment-type';
 
+const DATE_FORMAT = 'MMMM YYYY';
+
 export default function Review({comment, date, rating, user}: CommentType): JSX.Element {
   return (
     <li className='reviews__item'>
@@ -19,7 +21,7 @@ export default function Review({comment, date, rating, user}: CommentType): JSX.
           </div>
         </div>
         <p className='reviews__text'>{comment}</p>
-        <time className='reviews__time' dateTime={dayjs(date).toISOString()}>{dayjs(date).format('MMMM YYYY')}</time>
+        <time className='reviews__time' dateTime={dayjs(date).toISOString()}>{dayjs(date).format(DATE_FORMAT)}</time>
       </div>
     </li>
   );

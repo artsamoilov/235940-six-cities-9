@@ -15,6 +15,8 @@ export default function FavoritesCity({cityName}: PropsType): JSX.Element {
 
   const filteredOffers = favorites.filter((offer) => offer.city.name === cityName);
 
+  const handleLocationClick = () => dispatch(changeCity(cityName));
+
   return (
     <li className='favorites__locations-items'>
       <div className='favorites__locations locations locations--current'>
@@ -22,7 +24,7 @@ export default function FavoritesCity({cityName}: PropsType): JSX.Element {
           <Link
             to={AppRoute.Main}
             className='locations__item-link'
-            onClick={() => dispatch(changeCity(cityName))}
+            onClick={handleLocationClick}
           >
             <span>{cityName}</span>
           </Link>

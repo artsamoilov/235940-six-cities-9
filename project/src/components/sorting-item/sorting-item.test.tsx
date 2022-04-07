@@ -16,7 +16,7 @@ describe('Component: SortingItem', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <SortingItem sortingType={SortingOption.Popular} sortingChangeHandler={jest.fn()} />
+          <SortingItem sortingType={SortingOption.Popular} onSortingChange={jest.fn()} />
         </HistoryRouter>
       </Provider>,
     );

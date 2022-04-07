@@ -10,12 +10,12 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  cardHoverHandler?: (id: number) => void,
+  onCurrentCardHover?: (id: number) => void,
 }
 
 const EMPTY_ID = -1;
 
-export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
+export default function Card({offer, onCurrentCardHover}: PropsType): JSX.Element {
   const [favoriteStatus, setFavoriteStatus] = useState(offer.isFavorite);
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
@@ -30,9 +30,9 @@ export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element 
     }
   };
 
-  const handleMouseOver = () => cardHoverHandler ? cardHoverHandler(offer.id) : undefined;
+  const handleMouseOver = () => onCurrentCardHover ? onCurrentCardHover(offer.id) : undefined;
 
-  const handleMouseLeave = () => cardHoverHandler ? cardHoverHandler(EMPTY_ID) : undefined;
+  const handleMouseLeave = () => onCurrentCardHover ? onCurrentCardHover(EMPTY_ID) : undefined;
 
   return (
     <article className='cities__place-card place-card' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>

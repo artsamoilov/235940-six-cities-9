@@ -3,6 +3,11 @@ import {useAppSelector} from '../../hooks';
 import {memo} from 'react';
 import Review from '../review/review';
 
+enum CommentsLimit {
+  Minimum = 0,
+  Maximum = 10,
+}
+
 function ReviewsList(): JSX.Element {
   const comments = useAppSelector(({DATA}) => DATA.comments);
 
@@ -13,11 +18,14 @@ function ReviewsList(): JSX.Element {
   }
 
   const sortedComments = comments.slice().sort((comment1, comment2) => sortCommentsNewFirst(comment1, comment2));
-  const displayedComments = sortedComments.slice(0, 10);
+
+  const displayedComments = sortedComments.slice(CommentsLimit.Minimum, CommentsLimit.Maximum);
 
   return (
     <>
-      <h2 className='reviews__title'>Reviews &middot; <span className='reviews__amount'>{comments.length}</span></h2>
+      <h2 className='reviews__title'>
+        Reviews &middot; <span className='reviews__amount'>{comments.length}</span>
+      </h2>
       <ul className='reviews__list'>
         {displayedComments.map((comment: CommentType) => <Review key={comment.id} {...comment}/>)}
       </ul>

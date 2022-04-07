@@ -21,7 +21,7 @@ describe('Component: CardsList', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <CardsList handleCardHover={jest.fn()} offers={[fakeOffer]}/>
+          <CardsList onCardHover={jest.fn()} offers={[fakeOffer]}/>
         </HistoryRouter>
       </Provider>,
     );
