@@ -58,7 +58,29 @@ describe('Application Routing', () => {
   it('should render "LoginPage" when user navigate to "/login"', () => {
     history.push(AppRoute.SignIn);
 
-    render(fakeApp);
+    const noAuthStore = mockStore({
+      USER: {authorizationStatus: AuthorizationStatus.NoAuth},
+      VIEW: {cityName: CityName.Paris, sortingType: SortingOption.Popular},
+      DATA: {
+        isDataLoaded: true,
+        offers: fakeOffers,
+        userData: fakeUserData,
+        currentOffer: fakeOffers[0],
+        nearbyOffers: fakeOffers,
+        comments: fakeComments,
+        isFavoritesLoaded: true,
+        isFavoritesUpdated: true,
+        favorites: fakeOffers,
+      },
+    });
+
+    render(
+      <Provider store={noAuthStore}>
+        <HistoryRouter history={history}>
+          <App />
+        </HistoryRouter>
+      </Provider>
+    );
 
     expect(screen.getByPlaceholderText(/Email/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
