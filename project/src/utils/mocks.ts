@@ -4,20 +4,20 @@ import {CityName} from '../const';
 import {UserData} from '../types/user-data';
 import {CommentType} from '../types/comment-type';
 
-const DEFAULT_LENGTH = 3;
+const DEFAULT_LENGTH = 1;
 
 export const makeFakeOffer = (price = 100, rating = 3.5, isFavorite = false): OfferType => ({
-  bedrooms: datatype.number(10),
+  bedrooms: datatype.number(3),
   city: {
     location: {
       latitude: Number(address.latitude()),
       longitude: Number(address.longitude()),
-      zoom: datatype.number(20),
+      zoom: datatype.number(10),
     },
     name: CityName.Amsterdam,
   },
   description: lorem.paragraph(),
-  goods: Array.from({length: datatype.number(10)}, random.word),
+  goods: Array.from({length: datatype.number(DEFAULT_LENGTH)}, random.word),
   host: {
     avatarUrl: image.avatar(),
     id: datatype.number(),
@@ -25,19 +25,19 @@ export const makeFakeOffer = (price = 100, rating = 3.5, isFavorite = false): Of
     name: name.firstName(),
   },
   id: datatype.number(),
-  images: Array.from({length: datatype.number(6)}, image.imageUrl),
+  images: Array.from({length: datatype.number(DEFAULT_LENGTH)}, image.imageUrl),
   isFavorite: isFavorite,
   isPremium: datatype.boolean(),
   location: {
     latitude: Number(address.latitude()),
     longitude: Number(address.longitude()),
-    zoom: datatype.number(20),
+    zoom: datatype.number(10),
   },
   maxAdults: datatype.number(5),
   previewImage: image.imageUrl(),
   price: price,
   rating: rating,
-  title: lorem.sentence(5),
+  title: lorem.sentence(3, 2),
   type: lorem.word(),
 });
 
