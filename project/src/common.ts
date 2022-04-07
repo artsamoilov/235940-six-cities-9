@@ -1,7 +1,7 @@
 import {AuthorizationStatus, MAX_PERCENT, MAX_RATING, SortingOption} from './const';
 import {OfferType} from './types/offer-type';
 
-export const getRatingPercent = (rating: number): number => rating / MAX_RATING * MAX_PERCENT;
+export const getRatingPercent = (rating: number): number => Math.round(rating) / MAX_RATING * MAX_PERCENT;
 
 export const sortOffers = (offers: OfferType[], sortingType: string): OfferType[] => {
   switch (sortingType) {

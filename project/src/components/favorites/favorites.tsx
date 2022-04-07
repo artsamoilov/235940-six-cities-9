@@ -12,7 +12,7 @@ export default function Favorites(): JSX.Element {
         <section className='favorites'>
           <h1 className='favorites__title'>Saved listing</h1>
           <ul className='favorites__list'>
-            {uniqueCities.map((city: string): JSX.Element => <FavoritesCity key={city} cityName={city} />)}
+            {uniqueCities.map((cityName: string): JSX.Element => <FavoritesCity key={cityName} cityName={cityName} />)}
           </ul>
         </section>
       </div>

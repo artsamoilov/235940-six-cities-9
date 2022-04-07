@@ -9,6 +9,8 @@ function Navigation(): JSX.Element {
   const userData = useAppSelector(({DATA}) => DATA.userData);
   const dispatch = useAppDispatch();
 
+  const handleSignOutClick = () => dispatch(logoutAction());
+
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return (
       <nav className="header__nav">
@@ -22,7 +24,7 @@ function Navigation(): JSX.Element {
             </Link>
           </li>
           <li className="header__nav-item">
-            <Link onClick={() => dispatch(logoutAction())} to='' className="header__nav-link">
+            <Link onClick={handleSignOutClick} to='' className="header__nav-link">
               <span className="header__signout">Sign out</span>
             </Link>
           </li>

@@ -18,21 +18,22 @@ import {
   loadComments,
   loadFavorites,
   changeFavorite,
-  setFavoritesLoadingNeeded
+  setFavoritesLoadingNeeded,
+  setCommentSending, setCommentSent
 } from './offers-data/offers-data';
 
 const Action = {
-  FETCH_OFFERS: 'FETCH_OFFERS',
-  CHECK_AUTH: 'CHECK_AUTH',
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  FETCH_CURRENT_OFFER: 'FETCH_CURRENT_OFFER',
-  FETCH_NEARBY_OFFERS: 'FETCH_NEARBY_OFFERS',
-  FETCH_COMMENTS: 'FETCH_COMMENTS',
-  POST_COMMENT: 'POST_COMMENT',
-  FETCH_FAVORITES: 'FETCH_FAVORITES',
-  CHANGE_FAVORITE: 'CHANGE_FAVORITE',
-  REMOVE_FAVORITE: 'REMOVE_FAVORITE',
+  FETCH_OFFERS: 'data/fetchOffers',
+  CHECK_AUTH: 'user/checkAuth',
+  LOGIN: 'user/login',
+  LOGOUT: 'user/logout',
+  FETCH_CURRENT_OFFER: 'data/fetchCurrentOffer',
+  FETCH_NEARBY_OFFERS: 'data/fetchNearbyOffers',
+  FETCH_COMMENTS: 'data/fetchComments',
+  POST_COMMENT: 'data/postComment',
+  FETCH_FAVORITES: 'data/fetchFavorites',
+  CHANGE_FAVORITE: 'data/changeFavorite',
+  REMOVE_FAVORITE: 'data/removeFavorite',
 };
 
 export const fetchOffersAction = createAsyncThunk<void, undefined,
@@ -176,10 +177,12 @@ export const postCommentAction = createAsyncThunk<void,
     Action.POST_COMMENT,
     async ({offerId, rating, comment}, {dispatch, extra: api}) => {
       try {
+        dispatch(setCommentSending());
         const {data} = await api.post(`${APIRoute.Comments}/${offerId}`, {rating: rating, comment: comment});
         dispatch(loadComments(data));
       } catch (error) {
         errorHandle(error);
+        dispatch(setCommentSent());
       }
     },
   );

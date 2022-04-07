@@ -10,6 +10,8 @@ type PropsType = {
 };
 
 export default function FavoritesCard({offer}: PropsType): JSX.Element {
+  const handleFavoritesClick = () => store.dispatch(removeFromFavoritesAction({offerId: offer.id, status: 0}));
+
   return (
     <article className='favorites__card place-card'>
       {offer.isPremium && <CardPremiumMark />}
@@ -27,7 +29,7 @@ export default function FavoritesCard({offer}: PropsType): JSX.Element {
           <button
             className='place-card__bookmark-button place-card__bookmark-button--active button'
             type='button'
-            onClick={() => store.dispatch(removeFromFavoritesAction({offerId: offer.id, status: 0}))}
+            onClick={handleFavoritesClick}
           >
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark' />

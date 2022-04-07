@@ -9,10 +9,12 @@ function Sorting(): JSX.Element {
   const dispatch = useAppDispatch();
   const sortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
 
-  const sortingChangeHandler = (event: SyntheticEvent) => dispatch(changeSorting(event.currentTarget.textContent));
+  const onSortingChange = (event: SyntheticEvent) => dispatch(changeSorting(event.currentTarget.textContent));
+
+  const handleSortingClick = () => setIsOpened(!isOpened);
 
   return (
-    <form className='places__sorting' action='#' method='get' onClick={() => setIsOpened(!isOpened)}>
+    <form className='places__sorting' action='#' method='get' onClick={handleSortingClick}>
       <span className='places__sorting-caption'>Sort by</span>
       <span className='places__sorting-type' tabIndex={0}>
         &nbsp;{sortingType}
@@ -21,10 +23,10 @@ function Sorting(): JSX.Element {
         </svg>
       </span>
       <ul className={`places__options places__options--custom ${isOpened ? 'places__options--opened' : ''}`}>
-        <SortingItem sortingType={SortingOption.Popular} sortingChangeHandler={sortingChangeHandler} />
-        <SortingItem sortingType={SortingOption.PriceLowToHigh} sortingChangeHandler={sortingChangeHandler} />
-        <SortingItem sortingType={SortingOption.PriceHighToLow} sortingChangeHandler={sortingChangeHandler} />
-        <SortingItem sortingType={SortingOption.TopRatedFirst} sortingChangeHandler={sortingChangeHandler} />
+        <SortingItem sortingType={SortingOption.Popular} onSortingChange={onSortingChange} />
+        <SortingItem sortingType={SortingOption.PriceLowToHigh} onSortingChange={onSortingChange} />
+        <SortingItem sortingType={SortingOption.PriceHighToLow} onSortingChange={onSortingChange} />
+        <SortingItem sortingType={SortingOption.TopRatedFirst} onSortingChange={onSortingChange} />
       </ul>
     </form>
   );

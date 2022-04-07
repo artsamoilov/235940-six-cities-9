@@ -10,10 +10,12 @@ import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
   offer: OfferType,
-  cardHoverHandler: (id: number) => void,
+  onCurrentCardHover?: (id: number) => void,
 }
 
-export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element {
+const EMPTY_ID = -1;
+
+export default function Card({offer, onCurrentCardHover}: PropsType): JSX.Element {
   const [favoriteStatus, setFavoriteStatus] = useState(offer.isFavorite);
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
@@ -28,8 +30,12 @@ export default function Card({offer, cardHoverHandler}: PropsType): JSX.Element 
     }
   };
 
+  const handleMouseOver = () => onCurrentCardHover ? onCurrentCardHover(offer.id) : undefined;
+
+  const handleMouseLeave = () => onCurrentCardHover ? onCurrentCardHover(EMPTY_ID) : undefined;
+
   return (
-    <article className='cities__place-card place-card' onMouseOver={() => cardHoverHandler(offer.id)} onMouseLeave={() => cardHoverHandler(-1)}>
+    <article className='cities__place-card place-card' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
       {offer.isPremium && <CardPremiumMark />}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${offer.id}`}>

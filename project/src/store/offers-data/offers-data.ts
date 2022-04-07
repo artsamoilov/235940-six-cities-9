@@ -10,6 +10,7 @@ const initialState: OffersData = {
   userData: {} as UserData,
   currentOffer: {} as OfferType,
   nearbyOffers: [],
+  isCommentSent: true,
   comments: [],
   isFavoritesLoaded: false,
   isFavoritesUpdated: false,
@@ -35,6 +36,7 @@ export const offersData = createSlice({
     },
     loadComments: (state, action) => {
       state.comments = action.payload;
+      state.isCommentSent = true;
     },
     loadFavorites: (state, action) => {
       state.favorites = action.payload;
@@ -51,6 +53,12 @@ export const offersData = createSlice({
     setFavoritesLoadingNeeded: (state) => {
       state.isFavoritesLoaded = false;
     },
+    setCommentSending: (state) => {
+      state.isCommentSent = false;
+    },
+    setCommentSent: (state) => {
+      state.isCommentSent = true;
+    },
   },
 });
 
@@ -63,4 +71,6 @@ export const {
   loadFavorites,
   changeFavorite,
   setFavoritesLoadingNeeded,
+  setCommentSending,
+  setCommentSent,
 } = offersData.actions;

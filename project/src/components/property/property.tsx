@@ -62,7 +62,7 @@ function Property(): JSX.Element {
         <div className='property__inside'>
           <h2 className='property__inside-title'>What&apos;s inside</h2>
           <ul className='property__inside-list'>
-            {currentOffer.goods.map((good: string) => <li key={good} className='property__inside-item'>{good}</li>)}
+            {currentOffer.goods.map((goodsItem: string) => <li key={goodsItem} className='property__inside-item'>{goodsItem}</li>)}
           </ul>
         </div>
         <div className='property__host'>

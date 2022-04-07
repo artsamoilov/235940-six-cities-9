@@ -3,17 +3,20 @@ import {useAppSelector} from '../../hooks';
 
 type PropsType = {
   sortingType: string,
-  sortingChangeHandler: (evt: SyntheticEvent) => void,
+  onSortingChange: (evt: SyntheticEvent) => void,
 }
 
-export default function SortingItem({sortingType, sortingChangeHandler}: PropsType): JSX.Element {
+export default function SortingItem({sortingType, onSortingChange}: PropsType): JSX.Element {
   const storedSortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
+
+  const handleSortingItemClick = (evt: SyntheticEvent) => onSortingChange(evt);
 
   return (
     <li className={`places__option ${storedSortingType === sortingType ? 'places__option--active' : ''}`}
       tabIndex={0}
-      onClick={(evt) => sortingChangeHandler(evt)}
-    >{sortingType}
+      onClick={handleSortingItemClick}
+    >
+      {sortingType}
     </li>
   );
 }

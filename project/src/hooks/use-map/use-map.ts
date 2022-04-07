@@ -1,12 +1,10 @@
 import {useEffect, useState, MutableRefObject} from 'react';
 import leaflet from 'leaflet';
-import {CityType, LocationType} from '../../types/offer-type';
-import {useAppSelector} from '../index';
-import {Cities} from '../../mocks/cities';
+import {CityType} from '../../types/offer-type';
+import {Cities} from '../../const';
 
-export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, location: LocationType): leaflet.Map | null {
+export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, currentCity: CityType): leaflet.Map | null {
   const [map, setMap] = useState<leaflet.Map | null>(null);
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
 
   const moveToCity = (city: CityType | undefined, currentMap: leaflet.Map) => {
     if (city) {
@@ -20,13 +18,13 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, loc
   };
 
   useEffect(() => {
-    if (mapRef.current !== null && map === null && location) {
+    if (mapRef.current !== null && map === null && currentCity.location) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: location.latitude,
-          lng: location.longitude,
+          lat: currentCity.location.latitude,
+          lng: currentCity.location.longitude,
         },
-        zoom: location.zoom,
+        zoom: currentCity.location.zoom,
       });
 
       leaflet.tileLayer(
@@ -39,10 +37,10 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, loc
       setMap(instance);
     }
     if (map) {
-      const newCity = Cities.find(({name}) => name === cityName);
+      const newCity = Cities.find(({name}) => name === currentCity.name);
       moveToCity(newCity, map);
     }
-  }, [mapRef, map, location, cityName]);
+  }, [mapRef, map, currentCity]);
 
   return map;
 }
