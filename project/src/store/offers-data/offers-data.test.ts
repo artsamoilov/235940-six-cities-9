@@ -218,7 +218,7 @@ describe('Reducer: offersData', () => {
     expect(offersData.reducer(state, changeFavorite(fakeOffers[0])))
       .toEqual({
         isDataLoaded: false,
-        offers: [{...fakeOffers[0], isFavorite: true}, fakeOffers[1], fakeOffers[2]],
+        offers: [{...fakeOffers[0], isFavorite: true}],
         userData: {} as UserData,
         currentOffer: {} as OfferType,
         nearbyOffers: [],
