@@ -25,7 +25,7 @@ describe('Component: Card', () => {
 
     expect(screen.getByText(new RegExp(`${fakeOffer.price}`, 'i'))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(`${fakeOffer.title}`, 'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${fakeOffer.type[0].toUpperCase() + fakeOffer.type.slice(1)}`, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(`${fakeOffer.type[0].toUpperCase() + fakeOffer.type.slice(1)}`)).toBeInTheDocument();
   });
 });
 
