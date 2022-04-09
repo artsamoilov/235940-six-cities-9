@@ -8,6 +8,7 @@ const initialState: OffersData = {
   isDataLoaded: false,
   offers: [],
   userData: {} as UserData,
+  isCurrentOfferLoaded: false,
   currentOffer: {} as OfferType,
   nearbyOffers: [],
   isCommentSent: true,
@@ -30,6 +31,7 @@ export const offersData = createSlice({
     },
     loadCurrentOffer: (state, action) => {
       state.currentOffer = action.payload;
+      state.isCurrentOfferLoaded = true;
     },
     loadNearbyOffers: (state, action) => {
       state.nearbyOffers = action.payload;
@@ -46,11 +48,16 @@ export const offersData = createSlice({
     changeFavorite: (state, action) => {
       const currentOffer = state.offers.find((offer) => offer.id === action.payload.id);
       if (currentOffer) {
-        currentOffer.isFavorite = !currentOffer.isFavorite;
+        currentOffer.isFavorite = action.payload.isFavorite;
       }
       state.isFavoritesUpdated = false;
     },
+    setFavoritesEmpty: (state) => {
+      state.isCurrentOfferLoaded = false;
+      state.isFavoritesUpdated = false;
+    },
     setFavoritesLoadingNeeded: (state) => {
+      state.isFavoritesUpdated = false;
       state.isFavoritesLoaded = false;
     },
     setCommentSending: (state) => {
@@ -73,4 +80,5 @@ export const {
   setFavoritesLoadingNeeded,
   setCommentSending,
   setCommentSent,
+  setFavoritesEmpty,
 } = offersData.actions;

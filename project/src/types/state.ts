@@ -12,6 +12,7 @@ export type OffersData = {
   isDataLoaded: boolean,
   offers: OfferType[],
   userData: UserData,
+  isCurrentOfferLoaded: boolean,
   currentOffer: OfferType,
   nearbyOffers: OfferType[],
   isCommentSent: boolean,

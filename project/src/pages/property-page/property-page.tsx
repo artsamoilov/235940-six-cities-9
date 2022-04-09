@@ -3,6 +3,7 @@ import {AppRoute} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {fetchCommentsAction, fetchCurrentOfferAction, fetchNearbyOffersAction} from '../../store/api-actions';
 import {store} from '../../store';
+import {getOffers, getCurrentOfferLoadingStatus, getCurrentOffer, getNearbyOffers} from '../../store/offers-data/selectors';
 import Navigation from '../../components/navigation/navigation';
 import Header from '../../components/header/header';
 import CardsList from '../../components/cards-list/cards-list';
@@ -12,7 +13,11 @@ import Spinner from '../../components/spinner/spinner';
 import Property from '../../components/property/property';
 
 export default function PropertyPage(): JSX.Element {
-  const {offers, currentOffer, nearbyOffers} = useAppSelector(({DATA}) => DATA);
+  const offers = useAppSelector(getOffers);
+  const isCurrentOfferLoaded = useAppSelector(getCurrentOfferLoadingStatus);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+
   const currentOfferId = useParams().id;
 
   if (!offers.find((offer) => offer.id === Number(currentOfferId))) {
@@ -25,7 +30,7 @@ export default function PropertyPage(): JSX.Element {
     store.dispatch(fetchCommentsAction(offerId));
   };
 
-  if (currentOffer.id !== Number(currentOfferId)) {
+  if (currentOffer.id !== Number(currentOfferId) || !isCurrentOfferLoaded) {
     loadOfferData(currentOfferId);
     return <Spinner />;
   }

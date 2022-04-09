@@ -3,6 +3,7 @@ import {postCommentAction} from '../../store/api-actions';
 import {store} from '../../store';
 import {useParams} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
+import {getCommentSendingStatus} from '../../store/offers-data/selectors';
 
 type PropsType = {
   target: {
@@ -17,7 +18,7 @@ const enum TextLimit {
 }
 
 function CommentForm(): JSX.Element {
-  const isCommentSent = useAppSelector(({DATA}) => DATA.isCommentSent);
+  const isCommentSent = useAppSelector(getCommentSendingStatus);
   const offerId = useParams().id;
   const [formData, setFormData] = useState({
     rating: '',

@@ -1,14 +1,18 @@
 import {useCallback, useState} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
+import {getCityName} from '../../store/view-process/selectors';
+import {getOffers} from '../../store/offers-data/selectors';
 import Sorting from '../sorting/sorting';
 import CardsList from '../cards-list/cards-list';
 import MainMap from '../main-map/main-map';
 
 export default function Cities(): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState<OfferType | undefined>(undefined);
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
-  const offers = useAppSelector(({DATA}) => DATA.offers);
+
+  const cityName = useAppSelector(getCityName);
+  const offers = useAppSelector(getOffers);
+
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const onCardHover = useCallback((id: number) => {

@@ -187,14 +187,14 @@ describe('Async actions', () => {
   });
 
   it('should dispatch changeFavorite when POST /favorite/:id/:status', async () => {
-    const fakeData = {offerId: 1, status: 1};
+    const fakeData = {offerId: 1, status: 0};
 
     mockAPI.onPost(`${APIRoute.Favorite}/${fakeData.offerId}/${fakeData.status}`)
       .reply(200, {token: 'secret'});
 
     const store = mockStore();
 
-    await store.dispatch(removeFromFavoritesAction(fakeData));
+    await store.dispatch(removeFromFavoritesAction(String(fakeData.offerId)));
 
     const actions = store.getActions().map(({type}) => type);
 

@@ -1,5 +1,6 @@
 import {SyntheticEvent} from 'react';
 import {useAppSelector} from '../../hooks';
+import {getSortingType} from '../../store/view-process/selectors';
 
 type PropsType = {
   sortingType: string,
@@ -7,7 +8,7 @@ type PropsType = {
 }
 
 export default function SortingItem({sortingType, onSortingChange}: PropsType): JSX.Element {
-  const storedSortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
+  const storedSortingType = useAppSelector(getSortingType);
 
   const handleSortingItemClick = (evt: SyntheticEvent) => onSortingChange(evt);
 

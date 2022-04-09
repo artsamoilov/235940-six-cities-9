@@ -2,9 +2,10 @@ import {useRef, FormEvent} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
 import {useAppSelector} from '../../hooks';
 import {useAppDispatch} from '../../hooks';
-import {loginAction} from '../../store/api-actions';
+import {fetchOffersAction, loginAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {toast} from 'react-toastify';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import Header from '../../components/header/header';
 import LoginLocation from '../../components/login-location/login-location';
 
@@ -12,7 +13,7 @@ const emailRegExp = new RegExp(/^\S+@\S+\.\S+$/);
 const passwordRegExp = new RegExp(/(?=.*?[0-9])(?=.*?[A-Za-z]).+/);
 
 export default function LoginPage(): JSX.Element {
-  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -44,6 +45,7 @@ export default function LoginPage(): JSX.Element {
       }
 
       if (isEmailValid() && isPasswordValid()) {
+        dispatch(fetchOffersAction());
         dispatch(loginAction({email: emailRef.current.value, password: passwordRef.current.value}));
         navigate(AppRoute.Main);
       }

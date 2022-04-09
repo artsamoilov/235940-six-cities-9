@@ -1,19 +1,26 @@
-import {memo, useState} from 'react';
+import {memo, useEffect, useState} from 'react';
 import {getRatingPercent} from '../../common';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {store} from '../../store';
 import {setFavoriteAction} from '../../store/api-actions';
 import {useNavigate} from 'react-router-dom';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getCurrentOffer} from '../../store/offers-data/selectors';
 import PropertyPremiumMark from '../property-premium-mark/property-premium-mark';
 import ReviewsList from '../reviews-list/reviews-list';
 import CommentForm from '../comment-form/comment-form';
 
 function Property(): JSX.Element {
-  const currentOffer = useAppSelector(({DATA}) => DATA.currentOffer);
-  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
+  const currentOffer = useAppSelector(getCurrentOffer);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const [favoriteStatus, setFavoriteStatus] = useState(currentOffer.isFavorite);
+
+  useEffect(() => setFavoriteStatus(
+    (authorizationStatus === AuthorizationStatus.Auth) && currentOffer.isFavorite),
+  [authorizationStatus, currentOffer],
+  );
 
   const navigate = useNavigate();
 

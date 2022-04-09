@@ -2,6 +2,8 @@ import {Route, Routes} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {useAppSelector} from '../../hooks';
 import {isAuthStatusUnknown} from '../../common';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
+import {getDataLoadingStatus} from '../../store/offers-data/selectors';
 import MainPage from '../../pages/main-page/main-page';
 import PropertyPage from '../../pages/property-page/property-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
@@ -11,8 +13,8 @@ import PrivateRoute from '../private-route/private-route';
 import Spinner from '../spinner/spinner';
 
 export default function App(): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
-  const {isDataLoaded} = useAppSelector(({DATA}) => DATA);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoaded = useAppSelector(getDataLoadingStatus);
 
   if (isAuthStatusUnknown(authorizationStatus) || !isDataLoaded) {
     return <Spinner />;

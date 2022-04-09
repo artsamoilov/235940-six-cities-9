@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {getRatingPercent} from '../../common';
@@ -6,6 +6,7 @@ import {setFavoriteAction} from '../../store/api-actions';
 import {store} from '../../store';
 import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
 
 type PropsType = {
@@ -16,8 +17,14 @@ type PropsType = {
 const EMPTY_ID = -1;
 
 export default function Card({offer, onCurrentCardHover}: PropsType): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const [favoriteStatus, setFavoriteStatus] = useState(offer.isFavorite);
-  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
+
+  useEffect(() => setFavoriteStatus(
+    (authorizationStatus === AuthorizationStatus.Auth) && offer.isFavorite),
+  [authorizationStatus, offer],
+  );
 
   const navigate = useNavigate();
 

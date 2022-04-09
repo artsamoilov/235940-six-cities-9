@@ -1,4 +1,6 @@
 import {useAppSelector} from '../../hooks';
+import {getCityName} from '../../store/view-process/selectors';
+import {getOffers} from '../../store/offers-data/selectors';
 import Tabs from '../../components/tabs/tabs';
 import Header from '../../components/header/header';
 import Navigation from '../../components/navigation/navigation';
@@ -6,8 +8,9 @@ import Cities from '../../components/cities/cities';
 import CitiesEmpty from '../../components/cities-empty/cities-empty';
 
 export default function MainPage(): JSX.Element {
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
-  const offers = useAppSelector(({DATA}) => DATA.offers);
+  const cityName = useAppSelector(getCityName);
+  const offers = useAppSelector(getOffers);
+
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const isOffersExist = currentCityOffers.length > 0;

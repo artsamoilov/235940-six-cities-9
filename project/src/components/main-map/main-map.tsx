@@ -3,6 +3,7 @@ import leaflet, {Icon, Marker} from 'leaflet';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import {PARIS, Cities} from '../../const';
+import {getCityName} from '../../store/view-process/selectors';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/use-map/use-map';
 
@@ -25,7 +26,8 @@ const activeIcon = new Icon({
 });
 
 export default function MainMap({selectedOffer, offers, isInteractive = true}: PropsType): JSX.Element {
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
+  const cityName = useAppSelector(getCityName);
+
   const currentCityOffers = offers.filter(({city}) => city.name === cityName);
 
   const getCurrentCity = (currentCityName: string) => {
