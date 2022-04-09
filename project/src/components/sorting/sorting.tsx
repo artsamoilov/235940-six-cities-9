@@ -2,12 +2,14 @@ import React, {memo, SyntheticEvent, useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {changeSorting} from '../../store/view-process/view-process';
 import {SortingOption} from '../../const';
+import {getSortingType} from '../../store/view-process/selectors';
 import SortingItem from '../sorting-item/sorting-item';
 
 function Sorting(): JSX.Element {
   const [isOpened, setIsOpened] = useState(false);
   const dispatch = useAppDispatch();
-  const sortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
+
+  const sortingType = useAppSelector(getSortingType);
 
   const onSortingChange = (event: SyntheticEvent) => dispatch(changeSorting(event.currentTarget.textContent));
 

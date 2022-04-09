@@ -5,6 +5,7 @@ import {useAppDispatch} from '../../hooks';
 import {fetchOffersAction, loginAction} from '../../store/api-actions';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {toast} from 'react-toastify';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import Header from '../../components/header/header';
 import LoginLocation from '../../components/login-location/login-location';
 
@@ -12,7 +13,7 @@ const emailRegExp = new RegExp(/^\S+@\S+\.\S+$/);
 const passwordRegExp = new RegExp(/(?=.*?[0-9])(?=.*?[A-Za-z]).+/);
 
 export default function LoginPage(): JSX.Element {
-  const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);

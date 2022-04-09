@@ -3,6 +3,7 @@ import {AppRoute} from '../../const';
 import {changeCity} from '../../store/view-process/view-process';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {OfferType} from '../../types/offer-type';
+import {getFavorites} from '../../store/offers-data/selectors';
 import FavoritesCard from '../favorites-card/favorites-card';
 
 type PropsType = {
@@ -10,7 +11,7 @@ type PropsType = {
 };
 
 export default function FavoritesCity({cityName}: PropsType): JSX.Element {
-  const favorites = useAppSelector(({DATA}) => DATA.favorites);
+  const favorites = useAppSelector(getFavorites);
   const dispatch = useAppDispatch();
 
   const filteredOffers = favorites.filter((offer) => offer.city.name === cityName);

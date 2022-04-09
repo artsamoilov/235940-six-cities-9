@@ -2,6 +2,7 @@ import {memo} from 'react';
 import {OfferType} from '../../types/offer-type';
 import {useAppSelector} from '../../hooks';
 import {sortOffers} from '../../common';
+import {getCityName, getSortingType} from '../../store/view-process/selectors';
 import Card from '../card/card';
 
 type PropsType = {
@@ -10,8 +11,8 @@ type PropsType = {
 }
 
 function CardsList({onCardHover, offers}: PropsType): JSX.Element {
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
-  const sortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
+  const cityName = useAppSelector(getCityName);
+  const sortingType = useAppSelector(getSortingType);
 
   const onCurrentCardHover = onCardHover ? (id: number) => onCardHover(id) : undefined;
 

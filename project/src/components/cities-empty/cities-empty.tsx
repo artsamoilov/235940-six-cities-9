@@ -1,7 +1,8 @@
 import {useAppSelector} from '../../hooks';
+import {getCityName} from '../../store/view-process/selectors';
 
 export default function CitiesEmpty(): JSX.Element {
-  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
+  const cityName = useAppSelector(getCityName);
 
   return (
     <div className="cities__places-container cities__places-container--empty container">

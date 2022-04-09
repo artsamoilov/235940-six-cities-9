@@ -1,6 +1,7 @@
 import {CommentType} from '../../types/comment-type';
 import {useAppSelector} from '../../hooks';
 import {memo} from 'react';
+import {getComments} from '../../store/offers-data/selectors';
 import Review from '../review/review';
 
 enum CommentsLimit {
@@ -9,7 +10,7 @@ enum CommentsLimit {
 }
 
 function ReviewsList(): JSX.Element {
-  const comments = useAppSelector(({DATA}) => DATA.comments);
+  const comments = useAppSelector(getComments);
 
   const sortCommentsNewFirst = (comment1: CommentType, comment2: CommentType) => {
     const date1InNumber = new Date(comment1.date).getTime();

@@ -1,8 +1,9 @@
 import {useAppSelector} from '../../hooks';
+import {getFavorites} from '../../store/offers-data/selectors';
 import FavoritesCity from '../favorites-city/favorites-city';
 
 export default function Favorites(): JSX.Element {
-  const favorites = useAppSelector(({DATA}) => DATA.favorites);
+  const favorites = useAppSelector(getFavorites);
 
   const uniqueCities = [...new Set(favorites.map((offer) => offer.city.name))];
 
