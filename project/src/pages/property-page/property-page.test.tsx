@@ -20,6 +20,7 @@ const store = mockStore({
     isDataLoaded: true,
     offers: fakeOffers,
     userData: fakeUserData,
+    isCurrentOfferLoaded: true,
     currentOffer: fakeOffers[0],
     nearbyOffers: fakeOffers,
     comments: fakeComments,

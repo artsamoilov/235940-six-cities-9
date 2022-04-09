@@ -1,4 +1,4 @@
-import {memo, useState} from 'react';
+import {memo, useEffect, useState} from 'react';
 import {getRatingPercent} from '../../common';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import {useAppSelector} from '../../hooks';
@@ -14,6 +14,11 @@ function Property(): JSX.Element {
   const authorizationStatus = useAppSelector(({USER}) => USER.authorizationStatus);
 
   const [favoriteStatus, setFavoriteStatus] = useState(currentOffer.isFavorite);
+
+  useEffect(() => setFavoriteStatus(
+      (authorizationStatus === AuthorizationStatus.Auth) && currentOffer.isFavorite),
+    [authorizationStatus, currentOffer],
+  );
 
   const navigate = useNavigate();
 

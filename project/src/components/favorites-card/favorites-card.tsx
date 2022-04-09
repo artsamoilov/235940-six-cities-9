@@ -2,21 +2,27 @@ import {getRatingPercent} from '../../common';
 import {Link} from 'react-router-dom';
 import {OfferType} from '../../types/offer-type';
 import {store} from '../../store';
-import {removeFromFavoritesAction} from '../../store/api-actions';
+import {fetchCurrentOfferAction, removeFromFavoritesAction} from '../../store/api-actions';
+import {useDispatch} from 'react-redux';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
+import {setCurrentOfferLoadingNeeded} from '../../store/offers-data/offers-data';
 
 type PropsType = {
   offer: OfferType,
 };
 
 export default function FavoritesCard({offer}: PropsType): JSX.Element {
-  const handleFavoritesClick = () => store.dispatch(removeFromFavoritesAction({offerId: offer.id, status: 0}));
+  const handleFavoritesClick = () => store.dispatch(removeFromFavoritesAction(String(offer.id)));
+
+  const dispatch = useDispatch();
+
+  const handleLinkClick = () => dispatch(fetchCurrentOfferAction(String(offer.id)));
 
   return (
     <article className='favorites__card place-card'>
       {offer.isPremium && <CardPremiumMark />}
       <div className='favorites__image-wrapper place-card__image-wrapper'>
-        <Link to={`../offer/${offer.id}`}>
+        <Link onClick={handleLinkClick} to={`../offer/${offer.id}`}>
           <img className='place-card__image' src={offer.previewImage} width='150' height='110' alt={offer.title} />
         </Link>
       </div>
@@ -44,7 +50,7 @@ export default function FavoritesCard({offer}: PropsType): JSX.Element {
           </div>
         </div>
         <h2 className='place-card__name'>
-          <Link to={`../offer/${offer.id}`}>{offer.title}</Link>
+          <Link onClick={handleLinkClick} to={`../offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className='place-card__type'>{`${offer.type[0].toUpperCase() + offer.type.slice(1)}`}</p>
       </div>

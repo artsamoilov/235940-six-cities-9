@@ -10,7 +10,8 @@ type PropsType = {
 }
 
 function CardsList({onCardHover, offers}: PropsType): JSX.Element {
-  const {cityName, sortingType} = useAppSelector(({VIEW}) => VIEW);
+  const cityName = useAppSelector(({VIEW}) => VIEW.cityName);
+  const sortingType = useAppSelector(({VIEW}) => VIEW.sortingType);
 
   const onCurrentCardHover = onCardHover ? (id: number) => onCardHover(id) : undefined;
 

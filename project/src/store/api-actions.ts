@@ -19,7 +19,9 @@ import {
   loadFavorites,
   changeFavorite,
   setFavoritesLoadingNeeded,
-  setCommentSending, setCommentSent
+  setCommentSending,
+  setCommentSent,
+  setFavoritesEmpty
 } from './offers-data/offers-data';
 
 const Action = {
@@ -102,9 +104,11 @@ export const logoutAction = createAsyncThunk<void, undefined,
     Action.LOGOUT,
     async (_arg, {dispatch, extra: api}) => {
       try {
+        setFavoritesEmpty();
         await api.delete(APIRoute.Logout);
         dropToken();
         dispatch(loadUserData({} as UserData));
+        dispatch(loadFavorites([]));
         dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
       } catch (error) {
         errorHandle(error);
@@ -226,20 +230,16 @@ export const setFavoriteAction = createAsyncThunk<void,
     },
   );
 
-export const removeFromFavoritesAction = createAsyncThunk<void,
-  {
-    offerId: number,
-    status: number
-  },
+export const removeFromFavoritesAction = createAsyncThunk<void, string,
   {
     dispatch: AppDispatch,
     state: State,
     extra: AxiosInstance
   }>(
     Action.REMOVE_FAVORITE,
-    async ({offerId, status}, {dispatch, extra: api}) => {
+    async (offerId, {dispatch, extra: api}) => {
       try {
-        const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/${status}`);
+        const {data} = await api.post(`${APIRoute.Favorite}/${offerId}/0`);
         dispatch(changeFavorite(data));
       } catch (error) {
         errorHandle(error);
