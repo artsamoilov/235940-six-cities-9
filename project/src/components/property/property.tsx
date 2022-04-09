@@ -18,8 +18,8 @@ function Property(): JSX.Element {
   const [favoriteStatus, setFavoriteStatus] = useState(currentOffer.isFavorite);
 
   useEffect(() => setFavoriteStatus(
-      (authorizationStatus === AuthorizationStatus.Auth) && currentOffer.isFavorite),
-    [authorizationStatus, currentOffer],
+    (authorizationStatus === AuthorizationStatus.Auth) && currentOffer.isFavorite),
+  [authorizationStatus, currentOffer],
   );
 
   const navigate = useNavigate();

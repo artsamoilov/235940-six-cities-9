@@ -5,7 +5,6 @@ import {store} from '../../store';
 import {fetchCurrentOfferAction, removeFromFavoritesAction} from '../../store/api-actions';
 import {useDispatch} from 'react-redux';
 import CardPremiumMark from '../card-premium-mark/card-premium-mark';
-import {setCurrentOfferLoadingNeeded} from '../../store/offers-data/offers-data';
 
 type PropsType = {
   offer: OfferType,

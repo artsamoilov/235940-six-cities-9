@@ -23,7 +23,7 @@ export default function Card({offer, onCurrentCardHover}: PropsType): JSX.Elemen
 
   useEffect(() => setFavoriteStatus(
     (authorizationStatus === AuthorizationStatus.Auth) && offer.isFavorite),
-    [authorizationStatus, offer],
+  [authorizationStatus, offer],
   );
 
   const navigate = useNavigate();

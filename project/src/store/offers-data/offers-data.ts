@@ -29,9 +29,6 @@ export const offersData = createSlice({
     loadUserData: (state, action) => {
       state.userData = action.payload;
     },
-    setCurrentOfferLoadingNeeded: (state) => {
-      state.isCurrentOfferLoaded = false;
-    },
     loadCurrentOffer: (state, action) => {
       state.currentOffer = action.payload;
       state.isCurrentOfferLoaded = true;
@@ -84,5 +81,4 @@ export const {
   setCommentSending,
   setCommentSent,
   setFavoritesEmpty,
-  setCurrentOfferLoadingNeeded
 } = offersData.actions;
